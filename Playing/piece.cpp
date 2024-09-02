@@ -1,5 +1,5 @@
 #include "piece.h"
 
-Piece::Piece(QWidget *parent)
+Piece::Piece(PieceType type, QWidget *parent)
     : QWidget{parent}
 {}

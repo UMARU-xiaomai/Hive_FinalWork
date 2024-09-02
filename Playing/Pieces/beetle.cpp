@@ -5,3 +5,8 @@ Beetle::Beetle()
 {
 
 }
+
+QVector<Position> Beetle::getValidMoves(const Board *board) const
+{
+
+}
