@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/ui">
+        <file>Resources/hive_logo.png</file>
+    </qresource>
+</RCC>

@@ -15,9 +15,22 @@ StartScene::~StartScene()
     delete ui;
 }
 
-void StartScene::on_pushButton_clicked(bool checked)
+
+
+void StartScene::on_singlePlayBtn_clicked()
 {
     SceneManager::instance->switchToScene(1);
-    qDebug() << typeid(this->parent()).name();
+}
+
+
+void StartScene::on_multiplePlayBtn_clicked()
+{
+    SceneManager::instance->switchToScene(1);
+}
+
+
+void StartScene::on_exitGameBtn_clicked()
+{
+    exit(0);
 }
 

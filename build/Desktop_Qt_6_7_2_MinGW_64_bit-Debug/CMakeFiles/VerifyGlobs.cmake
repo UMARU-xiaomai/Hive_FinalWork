@@ -41,11 +41,27 @@ endif()
 # _directory_contents at D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/ShimitsuKoi/Hive_FinalWork/*.cpp")
 set(OLD_GLOB
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/board.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/game.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/player.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/position.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/Scenes/startscene.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/EWIEGA46WW/moc_mainwindow.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/EWIEGA46WW/moc_scenemanager.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/EWIEGA46WW/qrc_Resources.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_aiplayer.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_board.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_cell.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_game.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_piece.cpp"
+  "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/QJQGVMARZN/moc_player.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/VOZW7P6TKK/moc_playing.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/VOZW7P6TKK/moc_startscene.cpp"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/mocs_compilation.cpp"
@@ -70,6 +86,15 @@ endif()
 # _directory_contents at D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/ShimitsuKoi/Hive_FinalWork/*.h")
 set(OLD_GLOB
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/board.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/game.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/player.h"
+  "D:/ShimitsuKoi/Hive_FinalWork/Playing/position.h"
   "D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.h"
   "D:/ShimitsuKoi/Hive_FinalWork/Scenes/startscene.h"
   "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/include/ui_mainwindow.h"
@@ -159,6 +184,7 @@ endif()
 # _directory_contents at D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/ShimitsuKoi/Hive_FinalWork/*.qrc")
 set(OLD_GLOB
+  "D:/ShimitsuKoi/Hive_FinalWork/Resources.qrc"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

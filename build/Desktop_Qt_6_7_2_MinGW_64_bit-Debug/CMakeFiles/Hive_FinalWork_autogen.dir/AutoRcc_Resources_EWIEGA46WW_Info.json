@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen",
+	"CMAKE_BINARY_DIR" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "D:/ShimitsuKoi/Hive_FinalWork",
+	"CMAKE_SOURCE_DIR" : "D:/ShimitsuKoi/Hive_FinalWork",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Hive_FinalWork_autogen/include",
+	"INPUTS" : [ "D:/ShimitsuKoi/Hive_FinalWork/Resources/hive_logo.png" ],
+	"LOCK_FILE" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/Hive_FinalWork_autogen.dir/AutoRcc_Resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "Resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_Resources.cpp",
+	"RCC_EXECUTABLE" : "D:/Qt/6.7.2/mingw_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/Hive_FinalWork_autogen.dir/AutoRcc_Resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "D:/ShimitsuKoi/Hive_FinalWork/Resources.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

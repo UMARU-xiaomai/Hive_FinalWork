@@ -37,3 +37,4 @@ void SceneManager::switchToScene(const int num) {
     qDebug() << "Change to scene " << num;
     currentScene->show();
 }
+

@@ -1,5 +1,7 @@
 Hive_FinalWork_autogen/timestamp: \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QObject \
+	D:/Qt/6.7.2/mingw_64/include/QtCore/QStack \
+	D:/Qt/6.7.2/mingw_64/include/QtCore/QVector \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/q20functional.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/q20memory.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/q20type_traits.h \
@@ -78,6 +80,7 @@ Hive_FinalWork_autogen/timestamp: \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qsharedpointer.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qsharedpointer_impl.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qsize.h \
+	D:/Qt/6.7.2/mingw_64/include/QtCore/qstack.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qstring.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qstringalgorithms.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qstringbuilder.h \
@@ -114,6 +117,7 @@ Hive_FinalWork_autogen/timestamp: \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qutf8stringview.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qvariant.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qvarlengtharray.h \
+	D:/Qt/6.7.2/mingw_64/include/QtCore/qvector.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qversiontagging.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qxptype_traits.h \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/qyieldcpu.h \
@@ -528,6 +532,25 @@ Hive_FinalWork_autogen/timestamp: \
 	D:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
 	D:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
 	D:/ShimitsuKoi/Hive_FinalWork/CMakeLists.txt \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/board.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/board.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/game.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/game.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/player.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/player.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/position.cpp \
+	D:/ShimitsuKoi/Hive_FinalWork/Playing/position.h \
+	D:/ShimitsuKoi/Hive_FinalWork/Resources.qrc \
 	D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.cpp \
 	D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.h \
 	D:/ShimitsuKoi/Hive_FinalWork/Scenes/startscene.cpp \

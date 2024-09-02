@@ -259,7 +259,8 @@
 		"D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsVersionlessTargets.cmake",
 		"D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake",
 		"D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeParseArguments.cmake",
-		"D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake"
+		"D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake",
+		"D:/ShimitsuKoi/Hive_FinalWork/Resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/ShimitsuKoi/Hive_FinalWork",
 	"CROSS_CONFIG" : false,
@@ -267,6 +268,60 @@
 	"DEP_FILE_RULE_NAME" : "Hive_FinalWork_autogen/timestamp",
 	"HEADERS" : 
 	[
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.h",
+			"MU",
+			"YGO3T7GE4K/moc_beetle.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.h",
+			"MU",
+			"YGO3T7GE4K/moc_queenbee.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.h",
+			"MU",
+			"QJQGVMARZN/moc_aiplayer.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/board.h",
+			"MU",
+			"QJQGVMARZN/moc_board.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.h",
+			"MU",
+			"QJQGVMARZN/moc_cell.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/game.h",
+			"MU",
+			"QJQGVMARZN/moc_game.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.h",
+			"MU",
+			"QJQGVMARZN/moc_piece.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/player.h",
+			"MU",
+			"QJQGVMARZN/moc_player.cpp",
+			null
+		],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/position.h",
+			"MU",
+			"QJQGVMARZN/moc_position.cpp",
+			null
+		],
 		[
 			"D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.h",
 			"MU",
@@ -363,6 +418,19 @@
 	"SETTINGS_FILE" : "D:/ShimitsuKoi/Hive_FinalWork/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/Hive_FinalWork_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/beetle.cpp", "MU", null ],
+		[
+			"D:/ShimitsuKoi/Hive_FinalWork/Playing/Pieces/queenbee.cpp",
+			"MU",
+			null
+		],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/aiplayer.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/board.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/cell.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/game.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/piece.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/player.cpp", "MU", null ],
+		[ "D:/ShimitsuKoi/Hive_FinalWork/Playing/position.cpp", "MU", null ],
 		[ "D:/ShimitsuKoi/Hive_FinalWork/Scenes/playing.cpp", "MU", null ],
 		[ "D:/ShimitsuKoi/Hive_FinalWork/Scenes/startscene.cpp", "MU", null ],
 		[ "D:/ShimitsuKoi/Hive_FinalWork/main.cpp", "MU", null ],

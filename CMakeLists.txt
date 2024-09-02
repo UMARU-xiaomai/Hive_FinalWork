@@ -31,15 +31,23 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Scenes/startscene.h Scenes/startscene.cpp Scenes/startscene.ui
         Scenes/playing.h Scenes/playing.cpp Scenes/playing.ui
+        Resources.qrc
+        Playing/game.h Playing/game.cpp
+        Playing/player.h Playing/player.cpp
+        Playing/aiplayer.h Playing/aiplayer.cpp
+        Playing/board.h Playing/board.cpp
+        Playing/piece.h Playing/piece.cpp
+        Playing/position.h Playing/position.cpp
+        Playing/cell.h Playing/cell.cpp
+        Playing/Pieces/queenbee.h Playing/Pieces/queenbee.cpp
+        Playing/Pieces/beetle.h Playing/Pieces/beetle.cpp
+
 
 
 
 
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Hive_FinalWork APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+
 
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
