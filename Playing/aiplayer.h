@@ -7,7 +7,7 @@ class AIPlayer : public Player {
     Q_OBJECT
 
 public:
-    AIPlayer(const QString &name, QWidget *parent = nullptr);
+    AIPlayer(const QString &name);
     /*
      * @brief 随机选择一个棋子
      */

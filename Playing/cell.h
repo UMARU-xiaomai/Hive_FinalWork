@@ -6,11 +6,11 @@
 #include "position.h"
 #include <QStack>
 
-class Cell : public QObject {
+class Cell : public QWidget {
     Q_OBJECT
 
 public:
-    Cell(const Position &position, QObject *parent = nullptr);
+    Cell(const Position &position, QWidget *parent = nullptr);
     /*
      * @brief 添加棋子到此单元格，tip：piece.push(piece);
      */
@@ -22,7 +22,7 @@ public:
 
 private:
     Position position;///<当前位置
-    QStack<Piece*> piece; ///<使用栈存储棋子
+    QStack<Piece*> piece; ///<由于甲虫的存在，使用栈存储棋子
 };
 
 #endif // CELL_H

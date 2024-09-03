@@ -19,7 +19,7 @@ StartScene::~StartScene()
 
 void StartScene::on_singlePlayBtn_clicked()
 {
-    SceneManager::instance->switchToScene(1);
+    SceneManager::instance->switchToScene(2);
 }
 
 

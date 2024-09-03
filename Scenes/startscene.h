@@ -16,8 +16,6 @@ public:
     ~StartScene();
 
 private slots:
-    void on_pushButton_clicked(bool checked);
-
     void on_singlePlayBtn_clicked();
 
     void on_multiplePlayBtn_clicked();

@@ -13,7 +13,8 @@ SceneManager::SceneManager(QWidget *parent)
     SceneManager::instance = this;
     //在这里创建所有的场景
     addScene(0,new StartScene());
-    addScene(1,new Playing());
+    addScene(1,new Playing(false));
+    addScene(2,new Playing(true));
     //设置初始场景
     switchToScene(0);
 }

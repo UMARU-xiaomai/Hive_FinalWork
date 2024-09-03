@@ -7,11 +7,10 @@
 #include "board.h"
 #include "player.h"
 
-class Game : public QWidget {
-    Q_OBJECT
-
+class Game :public QObject{
+        Q_OBJECT
 public:
-    Game(QWidget *parent = nullptr);
+    Game(bool aiMode);
     void start();
     void playTurn();
     void checkGameOver();

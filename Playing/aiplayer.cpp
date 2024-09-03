@@ -1,6 +1,6 @@
 #include "aiplayer.h"
 
-AIPlayer::AIPlayer(const QString &name, QWidget *parent)
+AIPlayer::AIPlayer(const QString &name)
     :Player("AI",true)
 {
 

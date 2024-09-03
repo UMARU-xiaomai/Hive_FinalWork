@@ -8,11 +8,11 @@
 #include "piece.h"
 #include "position.h"
 class Cell;
-class Board : public QWidget {
+class Board :public QObject{
     Q_OBJECT
 
 public:
-    Board(QWidget *parent = nullptr);
+    Board();
     /*
      * @brief 从给定的位置获取Cell
      */

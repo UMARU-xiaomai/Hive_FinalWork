@@ -3,7 +3,8 @@
 
 #include <QObject>
 
-class Position {
+class Position : public QObject{
+    Q_OBJECT
 public:
     Position(int x = 0, int y = 0);//构造函数
     bool isAdjacentTo(const Position &other) const;

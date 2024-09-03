@@ -1,7 +1,6 @@
 #include "player.h"
 
-Player::Player(const QString &name, bool isAI, QWidget *parent)
-    : QWidget{parent}
+Player::Player(const QString &name, bool isAI)
 {
 
 }

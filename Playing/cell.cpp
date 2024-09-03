@@ -1,7 +1,7 @@
 #include "cell.h"
 
-Cell::Cell(const Position &position, QObject *parent)
-    : QObject{parent}
+Cell::Cell(const Position &position, QWidget *parent)
+    : QWidget{parent}
 {}
 
 void Cell::setPiece(Piece *piece)

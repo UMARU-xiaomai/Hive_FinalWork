@@ -7,11 +7,10 @@
 #include "piece.h"
 #include "board.h"
 
-class Player : public QWidget {
+class Player:public QObject{
     Q_OBJECT
-
 public:
-    Player(const QString &name, bool isAI, QWidget *parent = nullptr);
+    Player(const QString &name, bool isAI);
     /*
      * @brief 选择要操作的棋子
      */
