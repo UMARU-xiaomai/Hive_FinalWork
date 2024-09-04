@@ -1,5 +1,10 @@
 #include "piece.h"
 
-Piece::Piece(PieceType type, QWidget *parent)
+Piece::Piece(int belongingPlayer,PieceType type, QWidget *parent)
     : QWidget{parent}
 {}
+
+Position *Piece::getPosition()
+{
+    return &currentPosition;
+}

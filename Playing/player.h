@@ -23,9 +23,9 @@ public:
      * @brief 移动选择的棋子
      */
     virtual void movePiece(Piece* piece, Board* board, const Position &newPosition);
-
-protected:
     QString name;///<Player1/Player2/AI
+protected:
+
     int numberOfPlayer;
     bool isAI;///<是否为AI
     QVector<Piece*> pieces;///<持有的，还没有下到棋盘上的棋子

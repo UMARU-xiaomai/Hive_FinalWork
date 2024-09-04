@@ -4,8 +4,9 @@
 #include "aiplayer.h"
 #include "..\mainwindow.h"
 #include <QtConcurrent/QtConcurrent>
-
+#include "cell.h"
 #include <QThread>
+#include "..\scenemanager.h"
 Game::Game(bool aiMode,QObject* parent)
     :QObject(parent)
 {
@@ -55,7 +56,7 @@ Game::Game(bool aiMode,QObject* parent)
     board = new Board();
     isGameOver = false;
 
-    future = QtConcurrent::run([this]() { this->playTurn(); });
+    // future = QtConcurrent::run([this]() { this->playTurn(); });
 
 }
 
@@ -64,14 +65,19 @@ void Game::start()
 
 }
 
-void Game::playTurn()//异步调用
+void Game::playTurn()//在选择完地址后调用
 {
-    //相当于Update
-    while((!choosedPiece || !choosedPosition)&&!future.isCanceled())
-    {
-        // QThread::sleep(1);
-        // qDebug()<<"Hello";
-    }
+    // //相当于Update
+    // while((!choosedPiece || !choosedPosition)&&!future.isCanceled())
+    // {
+    //     // QThread::sleep(1);
+    //     // qDebug()<<"Hello";
+    // }
+
+    // if(future.isCanceled())
+    //     return;//防止切换场景时发生错误
+
+    //回合结束的操作
     if(choosedPiece->isPlaced)
     {
         board->movePiece(choosedPiece,choosedPosition);
@@ -84,9 +90,17 @@ void Game::playTurn()//异步调用
 }
 void Game::checkGameOver()
 {
-    for(auto i:queenBees)
+    for(Piece* i:queenBees)
     {
-
+        bool wasSurrounded = true;
+        for(int j=0;j<6;j++)
+            if(board->getPositionCell(i->getPosition()->getAdjacentPosition(j))->getPiece() == nullptr)
+                wasSurrounded = false;
+        if(wasSurrounded)
+        {
+            QMessageBox::information(MainWindow::instance,"游戏结束",QString("%1获胜！").arg(players[i->belongingPlayer]->name));
+            SceneManager::instance->switchToScene(0);
+        }
     }
 }
 

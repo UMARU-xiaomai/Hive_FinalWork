@@ -1,7 +1,7 @@
 #include "beetle.h"
 
-Beetle::Beetle(QWidget* parent)
-    :Piece(PieceType::Beetle,parent)
+Beetle::Beetle(int belongingPlayer,QWidget* parent)
+    :Piece(belongingPlayer,PieceType::Beetle,parent)
 {
 
 }
