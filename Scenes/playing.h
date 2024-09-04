@@ -14,7 +14,6 @@ class Playing : public QWidget
 
 public:
     explicit Playing(bool aiMode,QWidget *parent = nullptr);
-    static Playing* instance;
     ~Playing();
 
 private slots:

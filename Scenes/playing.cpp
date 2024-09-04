@@ -21,9 +21,8 @@ Playing::Playing(bool aiMode,QWidget *parent)
     // }
 
 
-    this->mainGame = new Game(aiMode);
+    this->mainGame = new Game(aiMode,this);
 }
-Playing* Playing::instance = nullptr;
 Playing::~Playing()
 {
     delete ui;

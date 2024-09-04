@@ -1,6 +1,7 @@
 #include "player.h"
 
-Player::Player(const QString &name, bool isAI)
+Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
+    :QObject(parent)
 {
 
 }

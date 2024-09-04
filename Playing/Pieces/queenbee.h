@@ -6,7 +6,7 @@
 class QueenBee : public Piece
 {
 public:
-    QueenBee();
+    QueenBee(QWidget* parent = nullptr);
     QVector<Position> getValidMoves(const Board* board) const override;
 };
 

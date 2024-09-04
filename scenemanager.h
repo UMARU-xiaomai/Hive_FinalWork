@@ -15,8 +15,8 @@ public:
 
 private:
     //添加场景，让每个场景（QWiget）在创建时添加到场景管理器
-    void addScene(const int num, QWidget *scene);
-    QMap<int, QWidget*> scenes;
+    QWidget* addSceneToMainQWidget(QWidget *scene);
+    // QMap<int, QWidget*> scenes;
     QWidget *currentScene = nullptr;
 
 signals:

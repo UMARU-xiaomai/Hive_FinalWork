@@ -1,11 +1,12 @@
 #include "position.h"
 
-Position::Position(int x, int y)
+Position::Position(int x, int y,QObject* parent)
+    :QObject(parent)
 {
 
 }
 
-bool Position::isAdjacentTo(const Position &other) const
+Position *Position::getAdjacentPosition(int i) const
 {
 
 }

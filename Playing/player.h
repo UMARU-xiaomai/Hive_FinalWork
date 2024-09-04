@@ -10,7 +10,7 @@
 class Player:public QObject{
     Q_OBJECT
 public:
-    Player(const QString &name, bool isAI);
+    Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent = nullptr);
     /*
      * @brief 选择要操作的棋子
      */
@@ -26,8 +26,10 @@ public:
 
 protected:
     QString name;///<Player1/Player2/AI
+    int numberOfPlayer;
     bool isAI;///<是否为AI
     QVector<Piece*> pieces;///<持有的，还没有下到棋盘上的棋子
+    bool queenBeePlaced;
 };
 
 #endif // PLAYER_H

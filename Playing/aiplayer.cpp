@@ -1,7 +1,7 @@
 #include "aiplayer.h"
 
-AIPlayer::AIPlayer(const QString &name)
-    :Player("AI",true)
+AIPlayer::AIPlayer(int numOfPlayer,QObject* parent)
+    :Player("AI",true,numOfPlayer,parent)
 {
 
 }

@@ -4,7 +4,7 @@
 class Beetle : public Piece
 {
 public:
-    Beetle();
+    Beetle(QWidget* parent = nullptr);
     QVector<Position> getValidMoves(const Board* board) const override;
 };
 

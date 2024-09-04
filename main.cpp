@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
 
     MainWindow w;
-    SceneManager sm;
+    SceneManager sm ;
 
     w.show();
     return a.exec();

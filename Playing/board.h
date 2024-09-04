@@ -12,11 +12,11 @@ class Board :public QObject{
     Q_OBJECT
 
 public:
-    Board();
+    Board(QObject* parent = nullptr);
     /*
      * @brief 从给定的位置获取Cell
      */
-    Cell* getPositionCell(const Position &position) const;
+    Cell* getPositionCell(const Position *position) const;
     /*
      * @brief 获取可以放新棋子的位置，可移动位置写在每个Piece子类中
      */
@@ -24,11 +24,11 @@ public:
     /*
      * @brief 放置选定的棋子
      */
-    void placePiece(Piece* piece, const Position &position);
+    void placePiece(Piece* piece, const Position *position);
     /*
      * @brief 将选择的棋子移动到给定的位置
      */
-    void movePiece(Piece* piece, const Position &newPosition);
+    void movePiece(Piece* piece, const Position *newPosition);
 
 private:
     QVector<QVector<Cell*>> cells;

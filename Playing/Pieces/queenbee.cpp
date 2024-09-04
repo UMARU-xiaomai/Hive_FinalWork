@@ -1,7 +1,7 @@
 #include "queenbee.h"
 
-QueenBee::QueenBee()
-    :Piece(PieceType::QueenBee)
+QueenBee::QueenBee(QWidget* parent)
+    :Piece(PieceType::QueenBee,parent)
 {}
 
 QVector<Position> QueenBee::getValidMoves(const Board *board) const

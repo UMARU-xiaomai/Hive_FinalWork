@@ -1,7 +1,7 @@
 #include "beetle.h"
 
-Beetle::Beetle()
-    :Piece(PieceType::Beetle)
+Beetle::Beetle(QWidget* parent)
+    :Piece(PieceType::Beetle,parent)
 {
 
 }

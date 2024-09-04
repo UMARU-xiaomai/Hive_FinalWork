@@ -6,11 +6,13 @@
 #include <QVector>
 #include "board.h"
 #include "player.h"
+#include <QFuture>
 
 class Game :public QObject{
         Q_OBJECT
 public:
-    Game(bool aiMode);
+    Game(bool aiMode,QObject* parent = nullptr);
+    ~Game();
     void start();
     void playTurn();
     void checkGameOver();
@@ -18,10 +20,17 @@ public:
 private:
     QVector<Player*> players;
     Board* board;
-    Player* currentPlayer;
+    int currentPlayer;
     bool isGameOver;
+    QVector<Piece*> queenBees;
+    int round;
 
+    Piece* choosedPiece = nullptr;
+    Position* choosedPosition = nullptr;
+
+    QFuture<void> future;
     void switchPlayer();
+
 };
 
 #endif // GAME_H
