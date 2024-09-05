@@ -14,12 +14,15 @@ class Playing : public QWidget
 
 public:
     explicit Playing(bool aiMode,QWidget *parent = nullptr);
+    static Playing* instance;
+    void addPieceWidgetToPlayerColumn(int playerNum,QWidget* pieceWidget);
     ~Playing();
 
 private slots:
     void on_tieBtn_clicked();
 
 private:
+    void showEvent(QShowEvent* event) override;
     Ui::Playing *ui;
     Game* mainGame;
 };

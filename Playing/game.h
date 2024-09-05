@@ -16,8 +16,10 @@ public:
     void start();
     void playTurn();
     void checkGameOver();
+    int getRound();
 
 private:
+    bool aiMode;
     QVector<Player*> players;
     Board* board;
     int currentPlayer;

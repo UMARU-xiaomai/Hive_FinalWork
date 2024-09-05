@@ -7,12 +7,14 @@
 //#include "cell.h"
 #include "piece.h"
 #include "position.h"
+//#include "game.h"
+class Game;
 class Cell;
 class Board :public QObject{
     Q_OBJECT
 
 public:
-    Board(QObject* parent = nullptr);
+    Board(Game * mainGame,QObject* parent = nullptr);
     /*
      * @brief 从给定的位置获取Cell
      */
@@ -31,7 +33,8 @@ public:
     void movePiece(Piece* piece, const Position *newPosition);
 
 private:
-    QVector<QVector<Cell*>> cells;
+    Game* mainGame;
+    QMap<int,QMap<int,Cell*>> cells;
 };
 
 #endif // BOARD_H

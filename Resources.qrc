@@ -2,4 +2,8 @@
     <qresource prefix="/ui">
         <file>Resources/hive_logo.png</file>
     </qresource>
+    <qresource prefix="/playing">
+        <file>Resources/piece_background_unselected.png</file>
+        <file>Resources/piece_background_selected.png</file>
+    </qresource>
 </RCC>

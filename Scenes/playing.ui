@@ -42,8 +42,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>77</width>
-        <height>450</height>
+        <width>71</width>
+        <height>439</height>
        </rect>
       </property>
      </widget>
@@ -72,8 +72,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>440</width>
-        <height>428</height>
+        <width>434</width>
+        <height>410</height>
        </rect>
       </property>
      </widget>
@@ -96,13 +96,16 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
      <widget class="QWidget" name="p1sContent">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>77</width>
-        <height>450</height>
+        <width>71</width>
+        <height>439</height>
        </rect>
       </property>
       <property name="sizePolicy">

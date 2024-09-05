@@ -1,10 +1,10 @@
 #include "board.h"
 
-Board::Board(QObject* parent)
+Board::Board(Game * mainGame,QObject* parent)
     :QObject(parent)
 
 {
-
+    this->mainGame = mainGame;
 }
 
 Cell *Board::getPositionCell(const Position *position) const

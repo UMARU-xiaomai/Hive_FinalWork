@@ -15,11 +15,11 @@ public:
     /*
      * @brief 随机放置到一个位置
      */
-    void placePiece(Piece* piece ,Board* board, const Position &position) override;
+    void placePiece(Piece* piece ,Board* board, const Position *position) override;
     /*
      * @brief 随机放置到一个位置
      */
-    void movePiece(Piece* piece, Board* board, const Position &newPosition) override;
+    void movePiece(Piece* piece, Board* board, const Position *newPosition) override;
 };
 
 #endif // AIPLAYER_H

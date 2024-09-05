@@ -39,8 +39,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Playing/piece.h Playing/piece.cpp
         Playing/position.h Playing/position.cpp
         Playing/cell.h Playing/cell.cpp
-        Playing/Pieces/queenbee.h Playing/Pieces/queenbee.cpp
-        Playing/Pieces/beetle.h Playing/Pieces/beetle.cpp
+
+
+        Playing/piecewidget.h Playing/piecewidget.cpp Playing/piecewidget.ui
+        Playing/pieces.h
+        Playing/pieces.cpp
+
 
 
 

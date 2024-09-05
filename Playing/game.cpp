@@ -10,14 +10,26 @@
 Game::Game(bool aiMode,QObject* parent)
     :QObject(parent)
 {
+    this->aiMode = aiMode;
+
+    //初始化棋盘
+    board = new Board(this);
+    isGameOver = false;
+
+    // future = QtConcurrent::run([this]() { this->start(); });
+
+}
+
+void Game::start()
+{
     //初始化玩家
     bool ok;
     QString text;
     do
     {
         text = QInputDialog::getText(MainWindow::instance, "输入对话框",
-                                             "请输入玩家1的名称：", QLineEdit::Normal,
-                                             "玩家1", &ok);
+                                     "请输入玩家1的名称：", QLineEdit::Normal,
+                                     "玩家1", &ok);
     }
     while(!ok || text.isEmpty());
     players.push_back(new Player(text,false,0,this));
@@ -26,7 +38,7 @@ Game::Game(bool aiMode,QObject* parent)
     if(aiMode)
     {
         players.push_back(new AIPlayer(1));
-         //TODO：更改显示名称
+            //TODO：更改显示名称
 
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(MainWindow::instance, "确认", "你想要先手吗？",
@@ -47,22 +59,9 @@ Game::Game(bool aiMode,QObject* parent)
         }
         while(!ok || text.isEmpty());
         players.push_back(new Player(text,false,1));
-         //TODO：更改显示名称
+            //TODO：更改显示名称
         currentPlayer = 0;
     }
-
-
-    //初始化棋盘
-    board = new Board();
-    isGameOver = false;
-
-    // future = QtConcurrent::run([this]() { this->playTurn(); });
-
-}
-
-void Game::start()
-{
-
 }
 
 void Game::playTurn()//在选择完地址后调用
@@ -85,8 +84,10 @@ void Game::playTurn()//在选择完地址后调用
         board->placePiece(choosedPiece,choosedPosition);
     }
     checkGameOver();
+    choosedPiece = nullptr;
+    choosedPosition = nullptr;
     currentPlayer = currentPlayer?0:1;
-    future = QtConcurrent::run([this]() { this->playTurn(); });
+    // future = QtConcurrent::run([this]() { this->playTurn(); });
 }
 void Game::checkGameOver()
 {
@@ -104,8 +105,13 @@ void Game::checkGameOver()
     }
 }
 
+int Game::getRound()
+{
+    return round;
+}
+
 Game::~Game()
 {
     qDebug()<<"Game was terminated.";
-    future.cancel();
+
 }

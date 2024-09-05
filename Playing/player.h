@@ -18,15 +18,15 @@ public:
     /*
      * @brief 放置选择的新棋子
      */
-    virtual void placePiece(Piece* piece ,Board* board, const Position &position);
+    virtual void placePiece(Piece* piece ,Board* board, const Position *position);
     /*
      * @brief 移动选择的棋子
      */
-    virtual void movePiece(Piece* piece, Board* board, const Position &newPosition);
+    virtual void movePiece(Piece* piece, Board* board, const Position *newPosition);
     QString name;///<Player1/Player2/AI
 protected:
 
-    int numberOfPlayer;
+    int numberOfPlayer;///<0:玩家1；1：玩家2
     bool isAI;///<是否为AI
     QVector<Piece*> pieces;///<持有的，还没有下到棋盘上的棋子
     bool queenBeePlaced;
