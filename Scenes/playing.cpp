@@ -59,6 +59,13 @@ void Playing::addPieceWidgetToPlayerColumn(int playerNum, QWidget *pieceWidget)
         ui->p2sContent->setLayout(ui->p2sContent->layout());
     }
 }
+
+void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget)
+{
+    qDebug() << "add widget to board";
+    widget->setParent(ui->boardWidgetContents);
+    widget->show();
+}
 Playing::~Playing()
 {
     delete ui;

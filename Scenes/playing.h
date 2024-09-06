@@ -16,6 +16,7 @@ public:
     explicit Playing(bool aiMode,QWidget *parent = nullptr);
     static Playing* instance;
     void addPieceWidgetToPlayerColumn(int playerNum,QWidget* pieceWidget);
+    void addWidgetToBoardWidget(Position* position ,QWidget* widget);
     ~Playing();
 
 private slots:

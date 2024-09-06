@@ -6,7 +6,7 @@ Position::Position(int x, int y,QObject* parent)
 
 }
 
-Position *Position::getAdjacentPosition(int i) const
+Position* Position::getAdjacentPosition(int i) const
 {
 
 }

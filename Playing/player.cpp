@@ -15,7 +15,7 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
         pieces.append(new Pieces::Beetle(numOfPlayer));
     for(int i = 0;i<3;i++)
         pieces.append(new Pieces::Grasshopper(numOfPlayer));
-    for(int i = 0;i<60;i++)
+    for(int i = 0;i<3;i++)
         pieces.append(new Pieces::SoldierAnt(numOfPlayer));
     for(Piece* i :pieces)
     {

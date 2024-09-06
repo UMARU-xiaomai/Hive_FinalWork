@@ -10,7 +10,7 @@ class Cell : public QObject {
     Q_OBJECT
 
 public:
-    Cell(const Position &position, QObject *parent = nullptr);
+    Cell(int x,int y, QObject *parent = nullptr);
     /*
      * @brief 添加棋子到此单元格，tip：piece.push(piece);
      */
@@ -19,6 +19,7 @@ public:
      * @brief 获取当前位置上的棋子，返回nullptr则表示没有棋子；由于使用栈存储棋子，若要移动棋推荐使用pop()取出
      */
     Piece* getPiece() const;
+    Position* getPosition();
 
 private:
     Position position;///<当前位置

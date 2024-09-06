@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QResizeEvent>
-
-
+//#include "piece.h"
+class Piece;
 namespace Ui {
 class PieceWidget;
 }
@@ -14,8 +14,9 @@ class PieceWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PieceWidget(QWidget *parent = nullptr);
+    explicit PieceWidget(Piece* srcPiece,QWidget *parent = nullptr);
     ~PieceWidget();
+    void cancelChecked();
 protected:
     void resizeEvent(QResizeEvent* event) override;
 private slots:
@@ -23,6 +24,7 @@ private slots:
 
 private:
     Ui::PieceWidget *ui;
+    Piece* connectedPiece;
 };
 
 #endif // PIECEWIDGET_H

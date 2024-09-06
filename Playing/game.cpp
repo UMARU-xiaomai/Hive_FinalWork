@@ -7,18 +7,29 @@
 #include "cell.h"
 #include <QThread>
 #include "..\scenemanager.h"
+#include "availablecellwidget.h"
+#include "..\Scenes\playing.h"
+#include <QDebug>
 Game::Game(bool aiMode,QObject* parent)
     :QObject(parent)
 {
     this->aiMode = aiMode;
 
+    //单例模式
+    if(Game::instance)
+        delete Game::instance;
+    Game::instance = this;
+
     //初始化棋盘
     board = new Board(this);
     isGameOver = false;
 
+    round =1;
     // future = QtConcurrent::run([this]() { this->start(); });
 
 }
+
+Game* Game::instance = nullptr;
 
 void Game::start()
 {
@@ -77,7 +88,7 @@ void Game::playTurn()//在选择完地址后调用
     //     return;//防止切换场景时发生错误
 
     //回合结束的操作
-    if(choosedPiece->isPlaced)
+    if(choosedPiece->isPlaced())
     {
         board->movePiece(choosedPiece,choosedPosition);
     }else{
@@ -87,6 +98,7 @@ void Game::playTurn()//在选择完地址后调用
     choosedPiece = nullptr;
     choosedPosition = nullptr;
     currentPlayer = currentPlayer?0:1;
+    round++;
     // future = QtConcurrent::run([this]() { this->playTurn(); });
 }
 void Game::checkGameOver()
@@ -105,9 +117,42 @@ void Game::checkGameOver()
     }
 }
 
-int Game::getRound()
+int Game::getRound(bool isTurn)
 {
-    return round;
+    if(isTurn)
+        return round;
+    else
+        return round/2+1;
+}
+
+void Game::setChoosedPiece(Piece *piece)
+{
+    if(choosedPiece)
+        choosedPiece->getPieceWidget()->cancelChecked();
+    choosedPiece = piece;
+    if(piece)
+    {
+        QVector<Position*>* positionPtr = piece->isPlaced()?piece->getValidMoves(board):board->getValidPlaces(piece);
+        //qDebug() <<piece->isPlaced()<< positionPtr->count();
+        for(Position* i :*positionPtr)
+        {
+            QWidget* curAvaCellWidget = new AvailableCellWidget();
+            displayedAvailableCellWidget.append(curAvaCellWidget);
+            Playing::instance->addWidgetToBoardWidget(i,curAvaCellWidget);
+        }
+    }else
+    {
+        for(QWidget* i:displayedAvailableCellWidget)
+        {
+            delete i;
+        }
+        displayedAvailableCellWidget.clear();
+    }
+}
+
+void Game::setChoosedPosition(Position *position)
+{
+
 }
 
 Game::~Game()

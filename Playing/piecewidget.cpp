@@ -1,11 +1,13 @@
 #include "piecewidget.h"
 #include "ui_piecewidget.h"
+#include "game.h"
 
-PieceWidget::PieceWidget(QWidget *parent)
+PieceWidget::PieceWidget(Piece* srcPiece,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::PieceWidget)
 {
     ui->setupUi(this);
+    connectedPiece=srcPiece;
 }
 
 void PieceWidget::resizeEvent(QResizeEvent* event)
@@ -26,11 +28,20 @@ PieceWidget::~PieceWidget()
     delete ui;
 }
 
+void PieceWidget::cancelChecked()
+{
+    ui->pieceToggle->setChecked(false);
+}
+
 void PieceWidget::on_pieceToggle_toggled(bool checked)
 {
     if(checked)
     {
-        //当棋子被选中时，需要展示甲虫重叠情况下全部的棋子
+        qDebug()<<"choosed!!";
+        Game::instance->setChoosedPiece(connectedPiece);
+    }else
+    {
+        Game::instance->setChoosedPiece(nullptr);
     }
 }
 

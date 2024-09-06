@@ -12,11 +12,15 @@ class Game :public QObject{
         Q_OBJECT
 public:
     Game(bool aiMode,QObject* parent = nullptr);
+    static Game* instance;
     ~Game();
     void start();
     void playTurn();
     void checkGameOver();
-    int getRound();
+    int getRound(bool isTurn);//false指一来一回，true指进行的操作数
+
+    void setChoosedPiece(Piece* piece);
+    void setChoosedPosition(Position* position);
 
 private:
     bool aiMode;
@@ -28,6 +32,7 @@ private:
     int round;
 
     Piece* choosedPiece = nullptr;
+    QVector<QWidget*> displayedAvailableCellWidget;
     Position* choosedPosition = nullptr;
 
     QFuture<void> future;

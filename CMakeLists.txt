@@ -44,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Playing/piecewidget.h Playing/piecewidget.cpp Playing/piecewidget.ui
         Playing/pieces.h
         Playing/pieces.cpp
+        Playing/availablecellwidget.h Playing/availablecellwidget.cpp Playing/availablecellwidget.ui
 
 
 
