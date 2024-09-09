@@ -21,6 +21,7 @@ public:
     static Playing* instance;
     void addPieceWidgetToPlayerColumn(int playerNum,QWidget* pieceWidget);
     void addWidgetToBoardWidget(Position* position ,QWidget* widget);
+    void Iresize();
     ~Playing();
 
 private slots:

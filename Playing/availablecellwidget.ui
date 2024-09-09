@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>320</height>
+    <width>104</width>
+    <height>100</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -49,8 +55,8 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>320</width>
-       <height>320</height>
+       <width>100</width>
+       <height>100</height>
       </size>
      </property>
      <property name="checkable">

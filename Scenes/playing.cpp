@@ -23,11 +23,11 @@ Playing::Playing(bool aiMode,QWidget *parent)
 
     csa = new CenteredScrollArea(this);
     dynamic_cast<QGridLayout*>(this->layout())->addWidget(csa,1,1);
-    csa->setWidgetResizable(true);
+    // csa->setWidgetResizable(true);
 
     QSAWidget = new QWidget(csa);
     //QSAWidget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Maximum,QSizePolicy::Policy::Maximum));
-    boardWidgetLayout = new HexagonLayout(QSAWidget);
+    boardWidgetLayout = new HexagonLayout(csa,QSAWidget);
     //boardWidgetLayout->setAlignment(Qt::AlignHCenter);
     //test
     // for(int i = 0;i<100;i++)
@@ -43,7 +43,7 @@ Playing::Playing(bool aiMode,QWidget *parent)
     //         boardWidgetLayout->addWidgetAt(button,i,j);
     //     }
     // }
-    // boardWidgetLayout->addWidgetAt(new QLabel("请选择棋子并放置"),0,0);
+    boardWidgetLayout->addWidgetAt(new QLabel("请选择棋子并放置"),0,0);
     QSAWidget->setLayout(boardWidgetLayout);
     csa->setWidget(QSAWidget);
     QSAWidget->show();
@@ -91,6 +91,11 @@ void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget)
     widget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Fixed,QSizePolicy::Policy::Fixed));
     boardWidgetLayout->addWidgetAt(widget,position->getX(),position->getY());
 
+}
+
+void Playing::Iresize()
+{
+    csa->Sresize();
 }
 Playing::~Playing()
 {

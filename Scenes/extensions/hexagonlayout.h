@@ -5,10 +5,11 @@
 #include <QWidget>
 #include <QMap>
 #include <QRect>
+#include "centeredscrollarea.h"
 
 class HexagonLayout : public QLayout {
 public:
-    HexagonLayout(QWidget *parent = nullptr);
+    HexagonLayout(CenteredScrollArea* csa,QWidget *parent = nullptr);
     ~HexagonLayout();
 
     // 必须实现的 QLayout 方法
@@ -35,6 +36,7 @@ private:
     int cellHeight = 100; // 每个单元格的高度
 
     QPoint getCellPosition(int row, int col) const;
+    CenteredScrollArea* csa;
 };
 
 

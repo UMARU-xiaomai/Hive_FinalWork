@@ -145,6 +145,7 @@ void Game::setChoosedPiece(Piece *piece)
             delete i;
         }
         displayedAvailableCellWidget.clear();
+        Playing::instance->Iresize();
     }
 }
 

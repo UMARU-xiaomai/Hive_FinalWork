@@ -1,5 +1,7 @@
 #include "hexagonlayout.h"
-HexagonLayout::HexagonLayout(QWidget *parent) : QLayout(parent) {}
+HexagonLayout::HexagonLayout(CenteredScrollArea* csa,QWidget *parent) : QLayout(parent) {
+    this->csa = csa;
+}
 HexagonLayout::~HexagonLayout() {
     while (!cells.isEmpty()) {
         delete takeAt(0);
@@ -17,6 +19,7 @@ void HexagonLayout::addWidgetAt(QWidget *widget, int col, int row) {
     int offset = 200;
     cells.last().row = offset+row;
     cells.last().col = offset+col;
+    csa->Sresize();
 }
 
 // 返回布局中的项目数量

@@ -37,7 +37,7 @@ QVector<Position*>* Board::getValidPlaces(const Piece *piece)
         cells[0][0] = curCell;
         res->append(curCell->getPosition());
         return res;
-    }else if(Game::instance->getRound(true)==2)
+    }else if(Game::instance->getRound(true)>=2)
     {
         for(int i =0;i<6;i++)
         {
