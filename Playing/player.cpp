@@ -21,6 +21,7 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
     {
         Playing::instance->addPieceWidgetToPlayerColumn(numOfPlayer,i->getPieceWidget());
     }
+    this->name = name;
     this->numberOfPlayer = numOfPlayer;
 }
 

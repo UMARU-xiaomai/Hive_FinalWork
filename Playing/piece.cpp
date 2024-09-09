@@ -1,11 +1,14 @@
 #include "piece.h"
+#include <QMetaEnum>
 
-Piece::Piece(int belongingPlayer,PieceType type, QObject *parent)
+Piece::Piece(int belongingPlayer,PieceType type,const QString &typeStr, QObject *parent)
     : QObject{parent}
 {
-    widget = new PieceWidget(this);
     this->belongingPlayer = belongingPlayer;
     this->type = type;
+    this->typeStr =typeStr;
+
+    widget = new PieceWidget(this);
 
 }
 
@@ -23,6 +26,12 @@ Position *Piece::getPosition()
 {
     return currentPosition;
 }
+PieceType Piece::getType()
+{
+    return type;
+}
+
+
 
 void Piece::setPosition(Position *position)
 {

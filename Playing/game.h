@@ -15,7 +15,7 @@ public:
     static Game* instance;
     ~Game();
     void start();
-    void checkGameOver();
+    bool checkGameOver();
     int getRound(bool isTurn);//false指一来一回，true指进行的操作数
 
     void setChoosedPiece(Piece* piece);//传入一个空指针来清空
@@ -23,11 +23,11 @@ public:
 
 private:
     bool aiMode;
-    QVector<Player*> players;
+    Player* players[2]{nullptr};
     Board* board;
     int currentPlayer;
     bool isGameOver;
-    QVector<Piece*> queenBees;
+    Piece* queenBees[2]{nullptr};
     int round;
 
     Piece* choosedPiece = nullptr;

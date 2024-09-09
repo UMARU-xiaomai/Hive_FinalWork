@@ -16,8 +16,8 @@ Game::Game(bool aiMode,QObject* parent)
     this->aiMode = aiMode;
 
     //单例模式
-    if(Game::instance != nullptr)
-        delete Game::instance;
+    // if(Game::instance != nullptr)
+    //     delete Game::instance;
     Game::instance = this;
 
     //初始化棋盘
@@ -43,12 +43,12 @@ void Game::start()
                                      "玩家1", &ok);
     }
     while(!ok || text.isEmpty());
-    players.push_back(new Player(text,false,0,this));
+    players[0] = new Player(text,false,0,this);
     //TODO：更改显示名称
 
     if(aiMode)
     {
-        players.push_back(new AIPlayer(1));
+        players[1] = new AIPlayer(1);
             //TODO：更改显示名称
 
         QMessageBox::StandardButton reply;
@@ -69,10 +69,11 @@ void Game::start()
                                          "玩家2", &ok);
         }
         while(!ok || text.isEmpty());
-        players.push_back(new Player(text,false,1));
+        players[1] = new Player(text,false,1,this);
             //TODO：更改显示名称
         currentPlayer = 0;
     }
+    MainWindow::instance->setStatusBarMessage(QString("请先手 %1 放置棋子。请注意，您需要在接下来的4回合内放置蜂后。").arg(players[currentPlayer]->name));
 }
 
 void Game::playTurn()//在选择完地址后调用
@@ -91,28 +92,66 @@ void Game::playTurn()//在选择完地址后调用
     board->movePiece(choosedPiece,choosedCell);
     Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget());
 
-    checkGameOver();
+    //检测放的是不是蜂后
+    if(choosedPiece->getType() == PieceType::QueenBee)
+    {
+        queenBees[currentPlayer] = choosedPiece;
+    }
+
+    if(checkGameOver())
+    {
+        MainWindow::instance->setStatusBarMessage("");
+        return;
+    }
     setChoosedPiece(nullptr);
     choosedCell = nullptr;
     currentPlayer = currentPlayer?0:1;
     qDebug() << "now:"<<currentPlayer;
     round++;
+
+    //显示状态栏信息
+    if(getRound(true)==2)
+    {
+        MainWindow::instance->setStatusBarMessage(QString("请后手 %1 放置棋子。请注意，您需要在接下来的4回合内放置蜂后。").arg(players[currentPlayer]->name));
+    }else
+    {
+        QString msg = QString("请 %1 移动或放置棋子。").arg(players[currentPlayer]->name);
+        if(!queenBees[currentPlayer])
+        {
+            int remainRound = 5-getRound(false);
+            if(remainRound>1)
+                msg += QString("请注意，您需要在接下来的%1回合内放置蜂后。").arg(remainRound);
+            else
+                msg += QString("请注意，您必须在本回合内放置蜂后。");
+        }
+        MainWindow::instance->setStatusBarMessage(msg);
+    }
     // future = QtConcurrent::run([this]() { this->playTurn(); });
 }
-void Game::checkGameOver()
+bool Game::checkGameOver()
 {
-    for(Piece* i:queenBees)
+    for(int i = 0;i<2;i++)
     {
-        bool wasSurrounded = true;
-        for(int j=0;j<6;j++)
-            if(board->getPositionCell(i->getPosition()->getAdjacentPosition(j))->getPiece() == nullptr)
-                wasSurrounded = false;
-        if(wasSurrounded)
+        if(Piece* curQB = queenBees[i])
         {
-            QMessageBox::information(MainWindow::instance,"游戏结束",QString("%1获胜！").arg(players[i->belongingPlayer]->name));
+            bool wasSurrounded = true;
+            for(int j=0;j<6;j++)
+                if(board->getPositionCell(curQB->getPosition()->getAdjacentPosition(j))->getPiece() == nullptr)
+                    wasSurrounded = false;
+            if(wasSurrounded)
+            {
+                QMessageBox::information(MainWindow::instance,"游戏结束",QString("%1获胜！").arg(players[i?0:1]->name));
+                SceneManager::instance->switchToScene(0);
+                return true;
+            }
+        }else if(getRound(false)>=4)
+        {
+            QMessageBox::information(MainWindow::instance,"游戏结束",QString("%1获胜！").arg(players[i?0:1]->name));
             SceneManager::instance->switchToScene(0);
+            return true;
         }
     }
+    return false;
 }
 
 int Game::getRound(bool isTurn)
@@ -120,7 +159,7 @@ int Game::getRound(bool isTurn)
     if(isTurn)
         return round;
     else
-        return round/2+1;
+        return (round+1)/2;
 }
 
 void Game::setChoosedPiece(Piece *piece)
@@ -128,7 +167,10 @@ void Game::setChoosedPiece(Piece *piece)
     if(choosedPiece)
         choosedPiece->getPieceWidget()->cancelChecked();
     choosedPiece = piece;
-    if(piece)
+
+    //若非该回合玩家棋子，不允许移动
+
+    if(piece&&piece->belongingPlayer==currentPlayer)
     {
         QVector<Position*>* positionPtr = piece->isPlaced()?piece->getValidMoves(board):board->getValidPlaces(piece);
         //qDebug() <<piece->isPlaced()<< positionPtr->count();

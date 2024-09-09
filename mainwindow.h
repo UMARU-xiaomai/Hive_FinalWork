@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     static MainWindow* instance;
     MainWindow(QWidget *parent = nullptr);
+    void setStatusBarMessage(QString msg);
     ~MainWindow();
 
 private slots:

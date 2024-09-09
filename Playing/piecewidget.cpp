@@ -8,6 +8,8 @@ PieceWidget::PieceWidget(Piece* srcPiece,QWidget *parent)
 {
     ui->setupUi(this);
     connectedPiece=srcPiece;
+    ui->label->setText(srcPiece->typeStr);
+    // qDebug() <<;
 }
 
 void PieceWidget::resizeEvent(QResizeEvent* event)

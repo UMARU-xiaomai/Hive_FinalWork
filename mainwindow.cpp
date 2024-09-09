@@ -12,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("Hive - by group 8");
 
 }
+
+void MainWindow::setStatusBarMessage(QString msg)
+{
+    ui->statusbar->showMessage(msg);
+}
 MainWindow* MainWindow::instance = nullptr;
 MainWindow::~MainWindow()
 {
