@@ -11,15 +11,24 @@ void CenteredScrollArea::setWidget(QWidget *widget)
 {
     contentWidget = widget;
     contentWidget->setParent(viewport());  // 将内容部件放到 viewport 中
+    resizeWidget();
     updateScrollBars();
     updateContentPosition();
+
 }
 
 void CenteredScrollArea::resizeEvent(QResizeEvent *event)
 {
     QAbstractScrollArea::resizeEvent(event);
+    resizeWidget();
     updateScrollBars();
     updateContentPosition();
+
+}
+
+void CenteredScrollArea::setWidgetResizable(bool tar)
+{
+    widgetResizable = tar;
 }
 
 void CenteredScrollArea::updateScrollBars()
@@ -59,5 +68,13 @@ void CenteredScrollArea::updateContentPosition()
 void CenteredScrollArea::scrollContentsBy(int dx, int dy)
 {
     QAbstractScrollArea::scrollContentsBy(dx, dy);
+    resizeWidget();
     updateContentPosition();
+
+}
+
+void CenteredScrollArea::resizeWidget()
+{
+    if(contentWidget!=nullptr&&widgetResizable&&layout())
+        contentWidget->resize(layout()->sizeHint());
 }

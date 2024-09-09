@@ -17,6 +17,7 @@ public:
 
     // 重写 resizeEvent 来调整布局和更新滚动条
     void resizeEvent(QResizeEvent *event) override ;
+    void setWidgetResizable(bool tar);
 
     // 重写滚动条的范围设置
     void updateScrollBars() ;
@@ -30,6 +31,8 @@ protected:
 
 private:
     QWidget *contentWidget;  // 显示内容的部件
+    bool widgetResizable;
+    void resizeWidget();
 };
 
 
