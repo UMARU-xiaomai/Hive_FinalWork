@@ -16,7 +16,7 @@ Game::Game(bool aiMode,QObject* parent)
     this->aiMode = aiMode;
 
     //单例模式
-    if(Game::instance)
+    if(Game::instance != nullptr)
         delete Game::instance;
     Game::instance = this;
 
@@ -95,6 +95,7 @@ void Game::playTurn()//在选择完地址后调用
     setChoosedPiece(nullptr);
     choosedCell = nullptr;
     currentPlayer = currentPlayer?0:1;
+    qDebug() << "now:"<<currentPlayer;
     round++;
     // future = QtConcurrent::run([this]() { this->playTurn(); });
 }
@@ -137,7 +138,7 @@ void Game::setChoosedPiece(Piece *piece)
             displayedAvailableCellWidget.append(curAvaCellWidget);
             Playing::instance->addWidgetToBoardWidget(i,curAvaCellWidget);
         }
-        delete positionPtr;
+
     }else
     {
         for(QWidget* i:displayedAvailableCellWidget)

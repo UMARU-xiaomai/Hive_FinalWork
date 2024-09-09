@@ -34,6 +34,7 @@ private:
     HexagonLayout* boardWidgetLayout;
     QWidget* QSAWidget;
     CenteredScrollArea* csa;
+    bool notStart = true;
 };
 
 #endif // PLAYING_H

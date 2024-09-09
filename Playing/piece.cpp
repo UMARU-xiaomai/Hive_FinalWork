@@ -4,6 +4,8 @@ Piece::Piece(int belongingPlayer,PieceType type, QObject *parent)
     : QObject{parent}
 {
     widget = new PieceWidget(this);
+    this->belongingPlayer = belongingPlayer;
+    this->type = type;
 
 }
 

@@ -19,7 +19,7 @@ public:
     /*
      * @brief 从给定的位置获取Cell
      */
-    Cell* getPositionCell(const Position *position);
+    Cell* getPositionCell(const Position *position,bool dontCreNewCell = false);
     /*
      * @brief 获取可以放新棋子的位置，可移动位置写在每个Piece子类中,需要手动释放返回的指针
      */

@@ -12,13 +12,16 @@ Cell::Cell(int x,int y, QObject *parent)
 void Cell::setPiece(Piece *piece)
 {
 
-    this->piece.append(piece);
+    this->piecesHere.push(piece);
     piece->setPosition(&position);
 }
 
 Piece *Cell::getPiece() const
 {
-    return piece.top();//仅获取
+    if(this->piecesHere.empty())
+        return nullptr;
+    else
+        return piecesHere.top();//仅获取
 }
 
 Position *Cell::getPosition()
@@ -26,13 +29,13 @@ Position *Cell::getPosition()
     return &position;
 }
 
-Cell *Cell::getAdjacentCell(int i)
+Cell *Cell::getAdjacentCell(int i,bool dontCreNewCell)
 {
     Cell* resCell = adjacentCells[i];
     if(!resCell)
     {
         Position* curPosition = this->getPosition()->getAdjacentPosition(i);
-        resCell = Board::instance->getPositionCell(curPosition);
+        resCell = Board::instance->getPositionCell(curPosition,dontCreNewCell);
 
         this->setAdjacentCell(i,resCell);
 

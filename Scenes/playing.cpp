@@ -54,8 +54,11 @@ Playing* Playing::instance = nullptr;
 
 void Playing::showEvent(QShowEvent* event) {
     QWidget::showEvent(event);
-
-    mainGame->start();
+    if(notStart)
+    {
+        mainGame->start();
+        notStart = false;
+    }
 }
 
 void Playing::addPieceWidgetToPlayerColumn(int playerNum, QWidget *pieceWidget)
