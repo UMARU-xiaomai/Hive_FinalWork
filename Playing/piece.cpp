@@ -4,7 +4,7 @@ Piece::Piece(int belongingPlayer,PieceType type, QObject *parent)
     : QObject{parent}
 {
     widget = new PieceWidget(this);
-    currentPosition = nullptr;
+
 }
 
 bool Piece::isPlaced()
@@ -20,4 +20,9 @@ PieceWidget *Piece::getPieceWidget()
 Position *Piece::getPosition()
 {
     return currentPosition;
+}
+
+void Piece::setPosition(Position *position)
+{
+    currentPosition = position;
 }

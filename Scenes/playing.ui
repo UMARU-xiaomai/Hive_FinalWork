@@ -20,6 +20,19 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="1,5,1">
+   <item row="0" column="0">
+    <widget class="QLabel" name="p1l">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>[Player1]</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="2" rowspan="2">
     <widget class="QScrollArea" name="p2sPieces">
      <property name="sizePolicy">
@@ -37,46 +50,26 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
      <widget class="QWidget" name="p2sContent">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>71</width>
-        <height>438</height>
+        <height>439</height>
        </rect>
       </property>
      </widget>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="p2l">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="tieBtn">
      <property name="text">
-      <string>[Player2]</string>
+      <string>和局</string>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QScrollArea" name="board">
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="boardWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>434</width>
-        <height>408</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </item>
    <item row="1" column="0" rowspan="2">
@@ -105,7 +98,7 @@
         <x>0</x>
         <y>0</y>
         <width>71</width>
-        <height>438</height>
+        <height>439</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -117,8 +110,8 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="p1l">
+   <item row="0" column="2">
+    <widget class="QLabel" name="p2l">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -126,15 +119,25 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>[Player1]</string>
+      <string>[Player2]</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="tieBtn">
-     <property name="text">
-      <string>和局</string>
+   <item row="1" column="1">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>434</width>
+        <height>410</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

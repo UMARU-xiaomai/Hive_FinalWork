@@ -88,15 +88,12 @@ void Game::playTurn()//在选择完地址后调用
     //     return;//防止切换场景时发生错误
 
     //回合结束的操作
-    if(choosedPiece->isPlaced())
-    {
-        board->movePiece(choosedPiece,choosedPosition);
-    }else{
-        board->placePiece(choosedPiece,choosedPosition);
-    }
+    board->movePiece(choosedPiece,choosedCell);
+    Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget());
+
     checkGameOver();
-    choosedPiece = nullptr;
-    choosedPosition = nullptr;
+    setChoosedPiece(nullptr);
+    choosedCell = nullptr;
     currentPlayer = currentPlayer?0:1;
     round++;
     // future = QtConcurrent::run([this]() { this->playTurn(); });
@@ -136,10 +133,11 @@ void Game::setChoosedPiece(Piece *piece)
         //qDebug() <<piece->isPlaced()<< positionPtr->count();
         for(Position* i :*positionPtr)
         {
-            QWidget* curAvaCellWidget = new AvailableCellWidget();
+            QWidget* curAvaCellWidget = new AvailableCellWidget(board->getPositionCell(i));
             displayedAvailableCellWidget.append(curAvaCellWidget);
             Playing::instance->addWidgetToBoardWidget(i,curAvaCellWidget);
         }
+        delete positionPtr;
     }else
     {
         for(QWidget* i:displayedAvailableCellWidget)
@@ -150,9 +148,10 @@ void Game::setChoosedPiece(Piece *piece)
     }
 }
 
-void Game::setChoosedPosition(Position *position)
+void Game::setChoosedCell(Cell *cell)
 {
-
+    choosedCell = cell;
+    playTurn();
 }
 
 Game::~Game()

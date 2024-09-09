@@ -20,10 +20,13 @@ public:
      */
     Piece* getPiece() const;
     Position* getPosition();
+    Cell* getAdjacentCell(int i);
+    void setAdjacentCell(int i,Cell* cell);
 
 private:
     Position position;///<当前位置
     QStack<Piece*> piece; ///<由于甲虫的存在，使用栈存储棋子
+    Cell* adjacentCells[6];///<邻接的Cell
 };
 
 #endif // CELL_H

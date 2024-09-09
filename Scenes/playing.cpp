@@ -2,6 +2,9 @@
 #include "ui_playing.h"
 #include "..\scenemanager.h"
 #include <QMessageBox>
+#include <QDebug>
+
+
 
 Playing::Playing(bool aiMode,QWidget *parent)
     : QWidget(parent)
@@ -15,16 +18,30 @@ Playing::Playing(bool aiMode,QWidget *parent)
     Playing::instance = this;
 
     //为持有棋子设置滚动条的布局
-    QVBoxLayout* p1sLayout = new QVBoxLayout(ui->p1sPieces->widget());
-    QVBoxLayout* p2sLayout = new QVBoxLayout(ui->p2sPieces->widget());
+    new QVBoxLayout(ui->p1sPieces->widget());
+    new QVBoxLayout(ui->p2sPieces->widget());
 
+    csa = new CenteredScrollArea(this);
+    dynamic_cast<QGridLayout*>(this->layout())->addWidget(csa,1,1);
+    QSAWidget = new QWidget(csa);
+    QSAWidget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Maximum,QSizePolicy::Policy::Maximum));
+    boardWidgetLayout = new HexagonLayout(QSAWidget);
+    //boardWidgetLayout->setAlignment(Qt::AlignHCenter);
     //test
     // for(int i = 0;i<100;i++)
     // {
     //     p1sLayout->addWidget(new QPushButton(QString("%1").arg(i)));
     //     p2sLayout->addWidget(new QPushButton(QString("%1").arg(i)));
     // }
-
+    // for (int i = 15; i <20 ; ++i) {
+    //     for (int j = 6;j<20;j++)
+    //     {
+    //         QPushButton *button = new QPushButton(QString::number(i + 1)+","+QString::number(j + 1));
+    //         button->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Fixed,QSizePolicy::Policy::Fixed));
+    //         boardWidgetLayout->addWidgetAt(button,i,j);
+    //     }
+    // }
+    // boardWidgetLayout->addWidgetAt(new QLabel("请选择棋子并放置"),0,0);
 
     this->mainGame = new Game(aiMode,this);
 }
@@ -63,8 +80,15 @@ void Playing::addPieceWidgetToPlayerColumn(int playerNum, QWidget *pieceWidget)
 void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget)
 {
     qDebug() << "add widget to board";
-    widget->setParent(ui->boardWidgetContents);
-    widget->show();
+
+
+    //添加至自定义的蜂窝布局
+    qDebug()<<position->getX()<<position->getY();
+    widget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Fixed,QSizePolicy::Policy::Fixed));
+    boardWidgetLayout->addWidgetAt(widget,position->getX(),position->getY());
+    QSAWidget->setLayout(boardWidgetLayout);
+    csa->setWidget(QSAWidget);
+    QSAWidget->show();
 }
 Playing::~Playing()
 {

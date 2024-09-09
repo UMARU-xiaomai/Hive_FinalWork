@@ -45,6 +45,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Playing/pieces.h
         Playing/pieces.cpp
         Playing/availablecellwidget.h Playing/availablecellwidget.cpp Playing/availablecellwidget.ui
+        Scenes/extensions/hexagonlayout.cpp Scenes/extensions/hexagonlayout.h
+        Scenes/extensions/centeredscrollarea.cpp Scenes/extensions/centeredscrollarea.h
+
 
 
 

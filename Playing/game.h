@@ -15,12 +15,11 @@ public:
     static Game* instance;
     ~Game();
     void start();
-    void playTurn();
     void checkGameOver();
     int getRound(bool isTurn);//false指一来一回，true指进行的操作数
 
-    void setChoosedPiece(Piece* piece);
-    void setChoosedPosition(Position* position);
+    void setChoosedPiece(Piece* piece);//传入一个空指针来清空
+    void setChoosedCell(Cell* cell);
 
 private:
     bool aiMode;
@@ -33,10 +32,11 @@ private:
 
     Piece* choosedPiece = nullptr;
     QVector<QWidget*> displayedAvailableCellWidget;
-    Position* choosedPosition = nullptr;
+    Cell* choosedCell = nullptr;
 
     QFuture<void> future;
     void switchPlayer();
+    void playTurn();
 
 };
 

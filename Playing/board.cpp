@@ -7,11 +7,23 @@ Board::Board(Game * mainGame,QObject* parent)
 
 {
     this->mainGame = mainGame;
+    //单例模式
+    if(Board::instance)
+        delete Board::instance;
+    Board::instance = this;
 }
 
-Cell *Board::getPositionCell(const Position *position) const
+Board* Board::instance = nullptr;
+Cell *Board::getPositionCell(const Position *position)
 {
-
+    // qDebug()<<"tes"<<position->getX()<<position->getY();
+    int x = position->getX();
+    int y = position->getY();
+    if(!cells[x][y])
+    {
+        cells[x][y] = new Cell(x,y);
+    }
+    return cells[x][y];
 }
 
 QVector<Position*>* Board::getValidPlaces(const Piece *piece)
@@ -19,6 +31,8 @@ QVector<Position*>* Board::getValidPlaces(const Piece *piece)
     QVector<Position*>* res = new QVector<Position*>();
     if(Game::instance->getRound(true)==1)
     {
+
+
         Cell* curCell = new Cell(0,0,this);
         cells[0][0] = curCell;
         res->append(curCell->getPosition());
@@ -27,7 +41,7 @@ QVector<Position*>* Board::getValidPlaces(const Piece *piece)
     {
         for(int i =0;i<6;i++)
         {
-            res->append((new Position(0,0))->getAdjacentPosition(i));
+            res->append(cells[0][0]->getPosition()->getAdjacentPosition(i));
         }
         return res;
     }else
@@ -52,12 +66,18 @@ QVector<Position*>* Board::getValidPlaces(const Piece *piece)
     }
 }
 
-void Board::placePiece(Piece *piece, const Position *position)
+void Board::movePiece(Piece *piece, Cell *cell)
 {
+    cell->setPiece(piece);
+    for(int i = 0;i<6;i++)
+    {
+        // Position* tarPosition = cell->getPosition()->getAdjacentPosition(i);
+        // if(!getPositionCell(tarPosition))
+        // {
+        //     Cell* curCell = new Cell(tarPosition->getX(),tarPosition->getY(),this);
+        //     cells[tarPosition->getX()][tarPosition->getY()] = curCell;
+        // }
+        Cell* curCell = cell->getAdjacentCell(i);
 
-}
-
-void Board::movePiece(Piece *piece, const Position *newPosition)
-{
-
+    }
 }

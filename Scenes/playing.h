@@ -3,6 +3,10 @@
 
 #include <QWidget>
 #include "..\Playing\game.h"
+#include "extensions/hexagonlayout.h"
+#include <QScrollArea>
+
+#include "extensions/centeredscrollarea.h"
 
 namespace Ui {
 class Playing;
@@ -26,6 +30,9 @@ private:
     void showEvent(QShowEvent* event) override;
     Ui::Playing *ui;
     Game* mainGame;
+    HexagonLayout* boardWidgetLayout;
+    QWidget* QSAWidget;
+    CenteredScrollArea* csa;
 };
 
 #endif // PLAYING_H

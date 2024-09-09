@@ -37,3 +37,4 @@ void Player::movePiece(Piece *piece, Board *board, const Position *newPosition)
 {
     board->getPositionCell(newPosition)->setPiece(piece);
 }
+//这三个函数仅会被Ai所调用
