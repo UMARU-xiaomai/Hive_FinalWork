@@ -7,4 +7,7 @@
         <file>Resources/piece_background_selected.png</file>
         <file>Resources/available_cell.png</file>
     </qresource>
+    <qresource prefix="/playing/piece">
+        <file>Resources/queen_bee.png</file>
+    </qresource>
 </RCC>

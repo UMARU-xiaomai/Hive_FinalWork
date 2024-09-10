@@ -10,6 +10,13 @@
 #include "availablecellwidget.h"
 #include "..\Scenes\playing.h"
 #include <QDebug>
+#include <QCoreApplication>
+#include <QLibrary>
+
+#include "plugpiece.h"
+
+typedef PlugPiece* (*CreatePluginFunc)();
+typedef void (*DestroyPluginFunc)(PlugPiece*);
 Game::Game(bool aiMode,QObject* parent)
     :QObject(parent)
 {
@@ -44,12 +51,12 @@ void Game::start()
     }
     while(!ok || text.isEmpty());
     players[0] = new Player(text,false,0,this);
-    //TODO：更改显示名称
+    Playing::instance->setPlayerName(text,0);
 
     if(aiMode)
     {
         players[1] = new AIPlayer(1);
-            //TODO：更改显示名称
+        Playing::instance->setPlayerName("AI",1);
 
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(MainWindow::instance, "确认", "你想要先手吗？",
@@ -70,9 +77,12 @@ void Game::start()
         }
         while(!ok || text.isEmpty());
         players[1] = new Player(text,false,1,this);
-            //TODO：更改显示名称
+        Playing::instance->setPlayerName(text,1);
         currentPlayer = 0;
     }
+
+    //加载插件
+
     MainWindow::instance->setStatusBarMessage(QString("请先手 %1 放置棋子。请注意，您需要在接下来的4回合内放置蜂后。").arg(players[currentPlayer]->name));
 }
 
@@ -93,7 +103,7 @@ void Game::playTurn()//在选择完地址后调用
     Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget());
 
     //检测放的是不是蜂后
-    if(choosedPiece->getType() == PieceType::QueenBee)
+    if(choosedPiece->isQueenBee())
     {
         queenBees[currentPlayer] = choosedPiece;
     }
@@ -136,7 +146,7 @@ bool Game::checkGameOver()
         {
             bool wasSurrounded = true;
             for(int j=0;j<6;j++)
-                if(board->getPositionCell(curQB->getPosition()->getAdjacentPosition(j))->getPiece() == nullptr)
+                if(curQB->getCell()->getAdjacentCell(j)->getPiece() == nullptr)
                     wasSurrounded = false;
             if(wasSurrounded)
             {
@@ -172,15 +182,15 @@ void Game::setChoosedPiece(Piece *piece)
 
     if(piece&&piece->belongingPlayer==currentPlayer)
     {
-        QVector<Position*>* positionPtr = piece->isPlaced()?piece->getValidMoves(board):board->getValidPlaces(piece);
+        QVector<Cell*>* positionPtr = piece->isPlaced()?piece->getValidMoves(board):board->getValidPlaces(piece);
         //qDebug() <<piece->isPlaced()<< positionPtr->count();
-        for(Position* i :*positionPtr)
+        for(Cell* i :*positionPtr)
         {
-            QWidget* curAvaCellWidget = new AvailableCellWidget(board->getPositionCell(i));
+            QWidget* curAvaCellWidget = new AvailableCellWidget(i);
             displayedAvailableCellWidget.append(curAvaCellWidget);
-            Playing::instance->addWidgetToBoardWidget(i,curAvaCellWidget);
+            Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget);
         }
-
+        delete positionPtr;
     }else
     {
         for(QWidget* i:displayedAvailableCellWidget)
@@ -196,6 +206,31 @@ void Game::setChoosedCell(Cell *cell)
 {
     choosedCell = cell;
     playTurn();
+}
+
+void Game::loadAndUsePlugin(const QString& pluginPath) {
+    QLibrary pluginLib(pluginPath);
+
+    if (pluginLib.load()) {
+        // 获取创建和销毁插件的函数指针
+        CreatePluginFunc createPlugin = (CreatePluginFunc)pluginLib.resolve("createPlugin");
+        DestroyPluginFunc destroyPlugin = (DestroyPluginFunc)pluginLib.resolve("destroyPlugin");
+
+        if (createPlugin && destroyPlugin) {
+            PlugPiece* plugin = createPlugin();  // 创建插件实例
+            plugin->initialize();  // 初始化插件
+
+            players[0]->addPlugPiece(plugin);
+            players[1]->addPlugPiece(plugin);
+
+            plugin->shutdown();  // 关闭插件
+            destroyPlugin(plugin);  // 销毁插件实例
+        } else {
+            qDebug() << "Failed to resolve plugin functions";
+        }
+    } else {
+        qDebug() << "Failed to load plugin:" << pluginLib.errorString();
+    }
 }
 
 Game::~Game()

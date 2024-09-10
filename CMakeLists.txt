@@ -47,6 +47,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Playing/availablecellwidget.h Playing/availablecellwidget.cpp Playing/availablecellwidget.ui
         Scenes/extensions/hexagonlayout.cpp Scenes/extensions/hexagonlayout.h
         Scenes/extensions/centeredscrollarea.cpp Scenes/extensions/centeredscrollarea.h
+        Playing/plugpiece.h Playing/plugpiece.cpp
+        Playing/testwidget.h Playing/testwidget.cpp Playing/testwidget.ui
+
 
 
 
@@ -76,6 +79,9 @@ endif()
 
 target_link_libraries(Hive_FinalWork PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+# 添加插件构建目录
+# add_subdirectory(Playing/Plugins)
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -100,3 +106,4 @@ install(TARGETS Hive_FinalWork
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Hive_FinalWork)
 endif()
+

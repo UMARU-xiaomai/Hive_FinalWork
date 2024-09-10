@@ -7,21 +7,24 @@ Cell::Cell(int x,int y, QObject *parent)
 {
     position.setX(x);
     position.setY(y);
+    piecesHere.clear();
 }
 
 void Cell::setPiece(Piece *piece)
 {
 
     this->piecesHere.push(piece);
-    piece->setPosition(&position);
+    piece->setCell(this);
 }
 
-Piece *Cell::getPiece() const
+Piece *Cell::getPiece(bool pop)
 {
-    if(this->piecesHere.empty())
+    if(this->piecesHere.isEmpty())
         return nullptr;
+    else if(pop)
+        return piecesHere.pop();
     else
-        return piecesHere.top();//仅获取
+        return piecesHere.top();
 }
 
 Position *Cell::getPosition()

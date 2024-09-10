@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
-    <height>276</height>
+    <width>388</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -28,69 +28,86 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>0</number>
+  <widget class="QPushButton" name="pieceToggle">
+   <property name="enabled">
+    <bool>true</bool>
    </property>
-   <property name="topMargin">
-    <number>0</number>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>370</width>
+     <height>319</height>
+    </rect>
    </property>
-   <property name="rightMargin">
-    <number>0</number>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
-   <property name="bottomMargin">
-    <number>0</number>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent; border: none;</string>
    </property>
-   <property name="spacing">
-    <number>0</number>
+   <property name="text">
+    <string/>
    </property>
-   <item row="0" column="0">
-    <widget class="QPushButton" name="pieceToggle">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>1</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: transparent; border: none;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../Resources.qrc">
-       <normaloff>:/playing/Resources/piece_background_unselected.png</normaloff>
-       <normalon>:/playing/Resources/piece_background_selected.png</normalon>:/playing/Resources/piece_background_unselected.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>320</width>
-       <height>320</height>
-      </size>
-     </property>
-     <property name="checkable">
-      <bool>true</bool>
-     </property>
-     <property name="autoExclusive">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>[Piece]</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-  </layout>
+   <property name="icon">
+    <iconset resource="../Resources.qrc">
+     <normaloff>:/playing/Resources/piece_background_unselected.png</normaloff>
+     <normalon>:/playing/Resources/piece_background_selected.png</normalon>:/playing/Resources/piece_background_unselected.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>320</width>
+     <height>320</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="autoExclusive">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>381</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>[Piece]</string>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="testlabel">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>220</y>
+     <width>53</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="../Resources.qrc"/>

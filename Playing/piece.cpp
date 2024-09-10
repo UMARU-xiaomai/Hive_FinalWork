@@ -1,20 +1,24 @@
 #include "piece.h"
 #include <QMetaEnum>
 
-Piece::Piece(int belongingPlayer,PieceType type,const QString &typeStr, QObject *parent)
+Piece::Piece(int belongingPlayer,QObject *parent)
     : QObject{parent}
 {
     this->belongingPlayer = belongingPlayer;
-    this->type = type;
-    this->typeStr =typeStr;
+    // this->isQB = isQueenBee;
+    // this->typeStr =typeStr;
+    // Piece::startQuantity = startQuantity;
 
-    widget = new PieceWidget(this);
+
 
 }
-
+void Piece::initWidget()
+{
+    widget = new PieceWidget(this);
+}
 bool Piece::isPlaced()
 {
-    return currentPosition!=nullptr;
+    return currentCell!=nullptr;
 }
 
 PieceWidget *Piece::getPieceWidget()
@@ -22,18 +26,15 @@ PieceWidget *Piece::getPieceWidget()
     return widget;
 }
 
-Position *Piece::getPosition()
+Cell *Piece::getCell()
 {
-    return currentPosition;
-}
-PieceType Piece::getType()
-{
-    return type;
+    return currentCell;
 }
 
+// bool Piece::isQB = false;
 
 
-void Piece::setPosition(Position *position)
+void Piece::setCell(Cell *cell)
 {
-    currentPosition = position;
+    currentCell = cell;
 }

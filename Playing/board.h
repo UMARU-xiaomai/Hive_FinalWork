@@ -23,7 +23,7 @@ public:
     /*
      * @brief 获取可以放新棋子的位置，可移动位置写在每个Piece子类中,需要手动释放返回的指针
      */
-    QVector<Position*>* getValidPlaces(const Piece* piece);
+    QVector<Cell*>* getValidPlaces(const Piece* piece);
     /*
      * @brief 将选择的棋子移动到给定的位置
      */

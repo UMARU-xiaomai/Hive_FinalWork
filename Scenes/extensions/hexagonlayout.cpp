@@ -16,7 +16,7 @@ void HexagonLayout::addItem(QLayoutItem *item) {
 // 添加 QWidget 到指定行列
 void HexagonLayout::addWidgetAt(QWidget *widget, int col, int row) {
     addWidget(widget);
-    int offset = 201;
+    int offset = 200;
     cells.last().row = offset+row;
     cells.last().col = offset+col;
     csa->Sresize();

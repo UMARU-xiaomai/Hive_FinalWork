@@ -24,12 +24,14 @@ public:
      */
     virtual void movePiece(Piece* piece, Board* board, const Position *newPosition);
     QString name;///<Player1/Player2/AI
+    void addPlugPiece(Piece* piece);
 protected:
 
     int numberOfPlayer;///<0:玩家1；1：玩家2
     bool isAI;///<是否为AI
     QVector<Piece*> pieces;///<持有的，还没有下到棋盘上的棋子
     bool queenBeePlaced;
+
 };
 
 #endif // PLAYER_H

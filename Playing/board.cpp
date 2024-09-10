@@ -1,5 +1,6 @@
 #include "board.h"
 #include "..\Scenes\playing.h"
+#include "testwidget.h"
 #include "cell.h"
 
 Board::Board(Game * mainGame,QObject* parent)
@@ -21,37 +22,44 @@ Cell *Board::getPositionCell(const Position *position,bool dontCreNewCell)
     int y = position->getY();
     if(!cells[x][y]&&!dontCreNewCell)
     {
-        qDebug()<<"tes"<<position->getX()<<position->getY();
+        qDebug()<<"tes"<<x<<y;
         cells[x][y] = new Cell(x,y);
         // qDebug() <<x;
     }
     return cells[x][y];
 }
 
-QVector<Position*>* Board::getValidPlaces(const Piece *piece)
+QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
 {
-    QVector<Position*>* res = new QVector<Position*>();
+    QVector<Cell*>* res = new QVector<Cell*>();
     if(Game::instance->getRound(true)==1)
     {
 
 
         Cell* curCell = new Cell(0,0);
         cells[0][0] = curCell;
-        res->append(curCell->getPosition());
+        res->append(curCell);
         return res;
     }else if(Game::instance->getRound(true)==2)
     {
         for(int i =0;i<6;i++)
         {
-            res->append(cells[0][0]->getAdjacentCell(i)->getPosition());
+            res->append(cells[0][0]->getAdjacentCell(i));
         }
         return res;
     }else
     {
+        // QVector<TestWidget*> testPoints;
         for (const QMap<int, Cell*> &innerMap : cells) {
             for (Cell* const &cell : innerMap) {
+
+
                 if(cell&&!cell->getPiece())//坑人，QMap只要读取过就会创建空对象，必须先检测对应位有没有Cell*
                 {
+                    //test
+                    // TestWidget* tp = new TestWidget();
+                    // testPoints.append(tp);
+
                     bool ava = false;
                     for(int i =0;i<6;i++)
                     {
@@ -70,16 +78,20 @@ QVector<Position*>* Board::getValidPlaces(const Piece *piece)
                     }
                     qDebug()<<ava;
                     if(ava)
-                        res->append(cell->getPosition());
+                        res->append(cell);
                 }
             }
         }
+        // for(auto i:testPoints)
+        //     delete i;
         return res;
     }
 }
 
 void Board::movePiece(Piece *piece, Cell *cell)
 {
+    if(piece->getCell())
+        piece->getCell()->getPiece(true);
     cell->setPiece(piece);
     for(int i = 0;i<6;i++)
     {
@@ -90,6 +102,7 @@ void Board::movePiece(Piece *piece, Cell *cell)
         //     cells[tarPosition->getX()][tarPosition->getY()] = curCell;
         // }
         Cell* curCell = cell->getAdjacentCell(i);
+        qDebug() <<"around cell position"<< curCell ->getPosition()->getX()<<curCell ->getPosition()->getY();
 
     }
 }

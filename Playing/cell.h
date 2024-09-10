@@ -18,7 +18,7 @@ public:
     /*
      * @brief 获取当前位置上的棋子，返回nullptr则表示没有棋子；由于使用栈存储棋子，若要移动棋推荐使用pop()取出
      */
-    Piece* getPiece() const;
+    Piece* getPiece(bool pop = false);
     Position* getPosition();
     Cell* getAdjacentCell(int i,bool dontCreNewCell = false);
     void setAdjacentCell(int i,Cell* cell);

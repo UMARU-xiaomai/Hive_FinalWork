@@ -19,6 +19,7 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
         pieces.append(new Pieces::SoldierAnt(numOfPlayer));
     for(Piece* i :pieces)
     {
+        i->initWidget();
         Playing::instance->addPieceWidgetToPlayerColumn(numOfPlayer,i->getPieceWidget());
     }
     this->name = name;
@@ -38,5 +39,12 @@ void Player::placePiece(Piece *piece, Board *board, const Position *position)
 void Player::movePiece(Piece *piece, Board *board, const Position *newPosition)
 {
     board->getPositionCell(newPosition)->setPiece(piece);
+}
+
+void Player::addPlugPiece(Piece *piece)
+{
+    pieces.append(piece);
+    Playing::instance->addPieceWidgetToPlayerColumn(numberOfPlayer,piece->getPieceWidget());
+
 }
 //这三个函数仅会被Ai所调用

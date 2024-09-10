@@ -37,6 +37,7 @@ private:
     QFuture<void> future;
     void switchPlayer();
     void playTurn();
+    void loadAndUsePlugin(const QString& pluginPath);
 
 };
 

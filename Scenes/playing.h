@@ -22,6 +22,7 @@ public:
     void addPieceWidgetToPlayerColumn(int playerNum,QWidget* pieceWidget);
     void addWidgetToBoardWidget(Position* position ,QWidget* widget);
     void Iresize();
+    void setPlayerName(QString name,int num);
     ~Playing();
 
 private slots:

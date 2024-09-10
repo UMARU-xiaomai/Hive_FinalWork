@@ -90,7 +90,7 @@ void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget)
 
 
     //添加至自定义的蜂窝布局
-    qDebug()<<position->getX()<<position->getY();
+    //qDebug()<<position->getX()<<position->getY();
     widget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Fixed,QSizePolicy::Policy::Fixed));
     boardWidgetLayout->addWidgetAt(widget,position->getX(),position->getY());
 
@@ -99,6 +99,16 @@ void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget)
 void Playing::Iresize()
 {
     csa->Sresize();
+}
+
+void Playing::setPlayerName(QString name, int num)
+{
+    if(num)
+    {
+        ui->p2l->setText(name);
+    }else{
+        ui->p1l->setText(name);
+    }
 }
 Playing::~Playing()
 {
