@@ -20,8 +20,8 @@ PieceWidget::PieceWidget(Piece* srcPiece,QWidget *parent)
     qsl->addWidget( ui->label);
     qsl->addWidget( ui->pieceToggle);
     this->setLayout(qsl);
-    //ui->label->setText(srcPiece->typeStr());
-    ui->label->setPixmap(QPixmap(srcPiece->getImgPath()).scaled(512,512));
+    ui->label->setText(srcPiece->typeStr());
+    //ui->label->setPixmap(QPixmap(srcPiece->getImgPath()).scaled(512,512));
     ui->label->setAttribute(Qt::WA_TransparentForMouseEvents,true);
     ui->testlabel->setAttribute(Qt::WA_TransparentForMouseEvents,true);
     // qDebug() <<;

@@ -23,19 +23,19 @@ public:
     int count() const override;
 
     // 自定义方法：在指定位置添加QWidget
-    void addWidgetAt(QWidget *widget, int row, int col);
+    void addWidgetAt(QWidget *widget, int row, int col,int layer = 0);
 
 private:
     struct HexCell {
         QLayoutItem *item;
-        int row, col;
+        int row, col,layer;
     };
 
     QList<HexCell> cells;
     int cellWidth = 100;  // 每个单元格的宽度
     int cellHeight = 100; // 每个单元格的高度
 
-    QPoint getCellPosition(int row, int col) const;
+    QPoint getCellPosition(int row, int col,int layer) const;
     CenteredScrollArea* csa;
 };
 

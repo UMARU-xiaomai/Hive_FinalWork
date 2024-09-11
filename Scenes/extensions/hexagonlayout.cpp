@@ -14,11 +14,12 @@ void HexagonLayout::addItem(QLayoutItem *item) {
 }
 
 // 添加 QWidget 到指定行列
-void HexagonLayout::addWidgetAt(QWidget *widget, int col, int row) {
+void HexagonLayout::addWidgetAt(QWidget *widget, int col, int row,int layer) {
     addWidget(widget);
     int offset = 200;
     cells.last().row = offset+row;
     cells.last().col = offset+col;
+    cells.last().layer = layer;
     csa->Sresize();
 }
 
@@ -59,7 +60,7 @@ QSize HexagonLayout::calculateBoundingSize() const {
     int maxX = INT_MIN, maxY = INT_MIN;
 
     for (const HexCell &cell : cells) {
-        QPoint pos = getCellPosition(cell.row, cell.col);
+        QPoint pos = getCellPosition(cell.row, cell.col,cell.layer);
         minX = qMin(minX, pos.x());
         minY = qMin(minY, pos.y());
         maxX = qMax(maxX, pos.x() + cellWidth);
@@ -76,20 +77,21 @@ void HexagonLayout::setGeometry(const QRect &rect) {
         int minX = INT_MAX, minY = INT_MAX;
 
         for (const HexCell &cell : cells) {
-            QPoint pos = getCellPosition(cell.row, cell.col);
+            QPoint pos = getCellPosition(cell.row, cell.col,cell.layer);
             minX = qMin(minX, pos.x());
             minY = qMin(minY, pos.y());
         }
-        QPoint pos = getCellPosition(cell.row, cell.col) - QPoint(minX,minY);
+        QPoint pos = getCellPosition(cell.row, cell.col,cell.layer) - QPoint(minX,minY);
         cell.item->setGeometry(QRect(pos, QSize(cellWidth, cellHeight)));
     }
 }
 
 // 计算每个六边形单元格的位置
-QPoint HexagonLayout::getCellPosition(int row, int col) const {
+QPoint HexagonLayout::getCellPosition(int row, int col,int layer) const {
 
     int xOffset = (row % 2 == 0) ? cellWidth / 2 : 0;
+    int yLayerOffset = -layer*(cellHeight/10);
     int x = col * cellWidth + xOffset;
-    int y = row * (cellHeight * 3 / 4);  // 每一行向下移动 3/4 个高度
+    int y = row * (cellHeight * 3 / 4) + yLayerOffset;  // 每一行向下移动 3/4 个高度
     return QPoint(x, y);
 }

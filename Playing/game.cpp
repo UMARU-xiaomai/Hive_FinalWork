@@ -100,7 +100,7 @@ void Game::playTurn()//在选择完地址后调用
 
     //回合结束的操作
     board->movePiece(choosedPiece,choosedCell);
-    Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget());
+    Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget(),choosedCell->getPiecesNum()-1);
 
     //检测放的是不是蜂后
     if(choosedPiece->isQueenBee())
@@ -188,7 +188,7 @@ void Game::setChoosedPiece(Piece *piece)
         {
             QWidget* curAvaCellWidget = new AvailableCellWidget(i);
             displayedAvailableCellWidget.append(curAvaCellWidget);
-            Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget);
+            Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget,i->getPiecesNum());
         }
         delete positionPtr;
     }else

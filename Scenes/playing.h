@@ -20,7 +20,7 @@ public:
     explicit Playing(bool aiMode,QWidget *parent = nullptr);
     static Playing* instance;
     void addPieceWidgetToPlayerColumn(int playerNum,QWidget* pieceWidget);
-    void addWidgetToBoardWidget(Position* position ,QWidget* widget);
+    void addWidgetToBoardWidget(Position* position ,QWidget* widget,int layer = 0);
     void Iresize();
     void setPlayerName(QString name,int num);
     ~Playing();

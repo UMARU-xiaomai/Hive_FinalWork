@@ -27,6 +27,11 @@ Piece *Cell::getPiece(bool pop)
         return piecesHere.top();
 }
 
+int Cell::getPiecesNum()
+{
+    return piecesHere.size();
+}
+
 Position *Cell::getPosition()
 {
     return &position;
