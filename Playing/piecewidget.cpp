@@ -66,6 +66,22 @@ void PieceWidget::cancelChecked()
     ui->pieceToggle->setChecked(false);
 }
 
+void PieceWidget::setPieceBelonging(int belongingNum)
+{
+    QIcon icon;
+    icon.addPixmap(QPixmap(":/playing/Resources/piece_background_selected.png"),QIcon::Normal,QIcon::On);
+    if(belongingNum)
+    {
+        ui->label->setStyleSheet("QLabel { color : white; }");
+        icon.addPixmap(QPixmap(":/playing/Resources/piece_background_unselected.png"),QIcon::Normal,QIcon::Off);
+    }else
+    {
+        ui->label->setStyleSheet("QLabel { color : black; }");
+        icon.addPixmap(QPixmap(":/playing/Resources/piece_background_unselected_2.png"),QIcon::Normal,QIcon::Off);
+    }
+    ui->pieceToggle->setIcon(icon);
+}
+
 void PieceWidget::on_pieceToggle_toggled(bool checked)
 {
     if(checked)

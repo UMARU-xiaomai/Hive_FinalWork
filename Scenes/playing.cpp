@@ -43,7 +43,7 @@ Playing::Playing(bool aiMode,QWidget *parent)
     //         boardWidgetLayout->addWidgetAt(button,i,j);
     //     }
     // }
-    boardWidgetLayout->addWidgetAt(new QLabel("请选择棋子并放置"),0,0);
+    boardWidgetLayout->addWidgetAt(pleasePlacePiece_label = new QLabel("请选择棋子并放置"),0,0);
     QSAWidget->setLayout(boardWidgetLayout);
     csa->setWidget(QSAWidget);
     QSAWidget->show();
@@ -93,6 +93,7 @@ void Playing::addWidgetToBoardWidget(Position *position, QWidget *widget,int lay
     //qDebug()<<position->getX()<<position->getY();
     widget->setSizePolicy(QSizePolicy(QSizePolicy::Policy::Fixed,QSizePolicy::Policy::Fixed));
     boardWidgetLayout->addWidgetAt(widget,position->getX(),position->getY(),layer);
+    widget->raise();
 
 }
 
@@ -109,6 +110,13 @@ void Playing::setPlayerName(QString name, int num)
     }else{
         ui->p1l->setText(name);
     }
+}
+
+void Playing::hidePleasePlacePiece_label()
+{
+    if(!pleasePlacePiece_label->isHidden())
+        pleasePlacePiece_label->hide();
+    return;
 }
 Playing::~Playing()
 {

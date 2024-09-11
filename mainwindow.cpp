@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QDebug>
+#include <QDesktopServices>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,5 +28,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionExit_triggered()
 {
     exit(0);
+}
+void MainWindow::on_actionAbout_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/UMARU-xiaomai/Hive_FinalWork"));
 }
 

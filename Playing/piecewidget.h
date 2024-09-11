@@ -17,6 +17,7 @@ public:
     explicit PieceWidget(Piece* srcPiece,QWidget *parent = nullptr);
     ~PieceWidget();
     void cancelChecked();
+    void setPieceBelonging(int belongingNum);
 protected:
     void resizeEvent(QResizeEvent* event) override;
 private slots:

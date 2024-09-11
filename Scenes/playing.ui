@@ -36,10 +36,22 @@
    <item row="1" column="2" rowspan="2">
     <widget class="QScrollArea" name="p2sPieces">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>130</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>130</width>
+       <height>16777215</height>
+      </size>
      </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
@@ -58,7 +70,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>71</width>
+        <width>114</width>
         <height>439</height>
        </rect>
       </property>
@@ -75,10 +87,22 @@
    <item row="1" column="0" rowspan="2">
     <widget class="QScrollArea" name="p1sPieces">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>130</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>130</width>
+       <height>16777215</height>
+      </size>
      </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
@@ -97,7 +121,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>71</width>
+        <width>114</width>
         <height>439</height>
        </rect>
       </property>

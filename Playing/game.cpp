@@ -101,6 +101,7 @@ void Game::playTurn()//在选择完地址后调用
     //回合结束的操作
     board->movePiece(choosedPiece,choosedCell);
     Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget(),choosedCell->getPiecesNum()-1);
+    Playing::instance->hidePleasePlacePiece_label();
 
     //检测放的是不是蜂后
     if(choosedPiece->isQueenBee())
@@ -125,14 +126,17 @@ void Game::playTurn()//在选择完地址后调用
         MainWindow::instance->setStatusBarMessage(QString("请后手 %1 放置棋子。请注意，您需要在接下来的4回合内放置蜂后。").arg(players[currentPlayer]->name));
     }else
     {
-        QString msg = QString("请 %1 移动或放置棋子。").arg(players[currentPlayer]->name);
+        QString msg = QString("请 %1 ").arg(players[currentPlayer]->name);
         if(!queenBees[currentPlayer])
         {
             int remainRound = 5-getRound(false);
             if(remainRound>1)
-                msg += QString("请注意，您需要在接下来的%1回合内放置蜂后。").arg(remainRound);
+                msg += QString("放置棋子。请注意，您需要在接下来的%1回合内放置蜂后。").arg(remainRound);
             else
-                msg += QString("请注意，您必须在本回合内放置蜂后。");
+                msg += QString("放置棋子。请注意，您必须在本回合内放置蜂后。");
+        }else
+        {
+            msg +=QString("移动或放置棋子。");
         }
         MainWindow::instance->setStatusBarMessage(msg);
     }
@@ -182,15 +186,23 @@ void Game::setChoosedPiece(Piece *piece)
 
     if(piece&&piece->belongingPlayer==currentPlayer)
     {
-        QVector<Cell*>* positionPtr = piece->isPlaced()?piece->getValidMoves(board):board->getValidPlaces(piece);
+        QVector<Cell*>* positionPtr = nullptr;
+        if(piece->isPlaced()&&queenBees[currentPlayer])
+            positionPtr = piece->getValidMoves(board);
+        else if(!piece->isPlaced())
+            positionPtr = board->getValidPlaces(piece);
         //qDebug() <<piece->isPlaced()<< positionPtr->count();
-        for(Cell* i :*positionPtr)
+
+        if(positionPtr)
         {
-            QWidget* curAvaCellWidget = new AvailableCellWidget(i);
-            displayedAvailableCellWidget.append(curAvaCellWidget);
-            Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget,i->getPiecesNum());
+            for(Cell* i :*positionPtr)
+            {
+                QWidget* curAvaCellWidget = new AvailableCellWidget(i);
+                displayedAvailableCellWidget.append(curAvaCellWidget);
+                Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget,i->getPiecesNum());
+            }
+            delete positionPtr;
         }
-        delete positionPtr;
     }else
     {
         for(QWidget* i:displayedAvailableCellWidget)

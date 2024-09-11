@@ -21,7 +21,7 @@ public:
     bool isPlaced();///<是否已经被放到棋盘上
     virtual QVector<Cell*>* getValidMoves(Board* board) const = 0;// 获取可移动位置虚函数，无需实现
     PieceWidget* getPieceWidget();
-    Cell* getCell();
+    Cell* getCell() const;
 
     void setCell(Cell* cell);
     int belongingPlayer;
@@ -33,6 +33,7 @@ public:
 protected:
     Cell* currentCell = nullptr;///<现在的位置
     PieceWidget* widget;
+    bool canBeMoved() const;
 
 };
 

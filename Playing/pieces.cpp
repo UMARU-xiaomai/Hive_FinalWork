@@ -15,7 +15,7 @@ QString QueenBee::getImgPath() const {return ":/playing/piece/Resources/queen_be
 QVector<Cell*>* QueenBee::getValidMoves( Board *board) const
 {
     QVector<Cell*>* res = new QVector<Cell*>();
-    if(!currentCell||currentCell->getPiece()!=this)
+    if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
         return res;
@@ -50,7 +50,7 @@ QVector<Cell*>* Spider::getValidMoves( Board *board) const
 {
 
     QVector<Cell*>* res = new QVector<Cell*>();
-    if(!currentCell||currentCell->getPiece()!=this)
+    if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"Cannot move piece";
         return res;
@@ -106,7 +106,7 @@ QString Beetle::getImgPath() const {return "";}
 QVector<Cell*>* Beetle::getValidMoves( Board *board) const
 {
     QVector<Cell*>* res = new QVector<Cell*>();
-    if(!currentCell||currentCell->getPiece()!=this)
+    if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
         return res;
@@ -139,7 +139,25 @@ QString Grasshopper::getImgPath() const {return "";}
 
 QVector<Cell*>* Grasshopper::getValidMoves( Board *board) const
 {
-return nullptr;
+    QVector<Cell*>* res = new QVector<Cell*>();
+    if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
+    {
+        qDebug() <<"piece not be placed";
+        return res;
+    }
+
+    for(int i = 0;i<6;i++)
+    {
+        Cell* cur = currentCell->getAdjacentCell(i,true);
+        if(!cur||!cur->getPiece())
+            continue;
+        while(cur->getPiece())
+        {
+            cur = cur->getAdjacentCell(i);
+        }
+        res->push_back(cur);
+    }
+    return res;
 }
 
 // SoldierAnt
@@ -153,6 +171,50 @@ QString SoldierAnt::getImgPath() const {return "";}
 
 QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
 {
-return nullptr;
+    QVector<Cell*>* res = new QVector<Cell*>();
+    if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
+    {
+        qDebug() <<"piece not be placed";
+        return res;
+    }
+
+    QVector<QPair<int,Cell*>> curCells;//通过pair来存储下一个点不要遍历的位置
+    curCells.push_back(QPair<int,Cell*>(-1,currentCell));
+    QVector<QPair<int,Cell*>> nextCells;
+    while(curCells.size())
+    {
+        nextCells.clear();
+        for(auto curCell:curCells)
+        {//bug：允许往回走了，会导致错误
+            for(int i = 0;i<6;i++)
+            {
+                if(curCell.first==i)
+                    continue;
+                Cell* cur = curCell.second->getAdjacentCell(i,true);
+                // if(!cur)
+                //     qDebug()<<"error!!!!!!!!!!";
+                if(!cur||cur->getPiece())// 遍历的点附近可能为空
+                    continue;
+                Piece* last = curCell.second->getAdjacentCell(i==0?5:i-1)->getPiece();
+                Piece* next = curCell.second->getAdjacentCell(i==5?0:i+1)->getPiece();
+                if(last == this)
+                    last = nullptr;
+                if(next == this)
+                    next = nullptr;
+
+                if((!last&&next)||(last&&!next))
+                {
+                    nextCells.push_back(QPair<int,Cell*>(i>2?i-3:i+3,cur));
+                    res->push_back(cur);
+                }
+            }
+        }
+        curCells = nextCells;
+    }
+    for(auto i:nextCells)
+    {
+        res->push_back(i.second);
+    }
+    return res;
 }
 }

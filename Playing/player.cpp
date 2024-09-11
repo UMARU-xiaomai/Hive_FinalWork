@@ -28,7 +28,7 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
 
 Piece *Player::selectPiece(Board *board)
 {
-
+    return nullptr;
 }
 
 void Player::placePiece(Piece *piece, Board *board, const Position *position)
@@ -40,11 +40,11 @@ void Player::movePiece(Piece *piece, Board *board, const Position *newPosition)
 {
     board->getPositionCell(newPosition)->setPiece(piece);
 }
-
+//这三个函数仅会被Ai所调用
 void Player::addPlugPiece(Piece *piece)
 {
     pieces.append(piece);
     Playing::instance->addPieceWidgetToPlayerColumn(numberOfPlayer,piece->getPieceWidget());
 
 }
-//这三个函数仅会被Ai所调用
+

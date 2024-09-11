@@ -5,6 +5,7 @@
 #include "..\Playing\game.h"
 #include "extensions/hexagonlayout.h"
 #include <QScrollArea>
+#include <QLabel>
 
 #include "extensions/centeredscrollarea.h"
 
@@ -23,6 +24,7 @@ public:
     void addWidgetToBoardWidget(Position* position ,QWidget* widget,int layer = 0);
     void Iresize();
     void setPlayerName(QString name,int num);
+    void hidePleasePlacePiece_label();
     ~Playing();
 
 private slots:
@@ -36,6 +38,7 @@ private:
     QWidget* QSAWidget;
     CenteredScrollArea* csa;
     bool notStart = true;
+    QLabel* pleasePlacePiece_label = nullptr;
 };
 
 #endif // PLAYING_H
