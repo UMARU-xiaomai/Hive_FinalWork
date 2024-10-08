@@ -7,25 +7,17 @@
 Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
     :QObject(parent)
 {
-    //初始化拥有的昆虫并加到玩家栏
-    pieces.append(new Pieces::QueenBee(numOfPlayer));
-    for(int i = 0;i<2;i++)
-        pieces.append(new Pieces::Spider(numOfPlayer));
-    for(int i = 0;i<2;i++)
-        pieces.append(new Pieces::Beetle(numOfPlayer));
-    for(int i = 0;i<3;i++)
-        pieces.append(new Pieces::Grasshopper(numOfPlayer));
-    for(int i = 0;i<3;i++)
-        pieces.append(new Pieces::SoldierAnt(numOfPlayer));
+    //TODO：初始化拥有的昆虫并加到玩家栏
+
+    //下面是UI相关，别动
     for(Piece* i :pieces)
     {
         i->initWidget();
         Playing::instance->addPieceWidgetToPlayerColumn(numOfPlayer,i->getPieceWidget());
     }
-    this->name = name;
-    this->numberOfPlayer = numOfPlayer;
 }
 
+//
 Piece *Player::selectPiece(Board *board)
 {
     return nullptr;

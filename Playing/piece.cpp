@@ -5,40 +5,44 @@
 Piece::Piece(int belongingPlayer,QObject *parent)
     : QObject{parent}
 {
-    this->belongingPlayer = belongingPlayer;
-    // this->isQB = isQueenBee;
-    // this->typeStr =typeStr;
-    // Piece::startQuantity = startQuantity;
-
-
-
+    //TODO
 }
 void Piece::initWidget()
 {
     widget = new PieceWidget(this);
     widget->setPieceBelonging(belongingPlayer);
 }
+///
+/// \brief Piece::isPlaced 获取是否已经被放置
+/// \return
+///
 bool Piece::isPlaced()
 {
-    return currentCell!=nullptr;
+    //TODO
 }
 
 PieceWidget *Piece::getPieceWidget()
 {
     return widget;
 }
-
+///
+/// \brief Piece::getCell 获取Cell
+/// \return
+///
 Cell *Piece::getCell() const
 {
-    return currentCell;
+    //TODO
 }
 
 // bool Piece::isQB = false;
 
-
+///
+/// \brief Piece::setCell设置新的放置在的Cell
+/// \param cell
+///
 void Piece::setCell(Cell *cell)
 {
-    currentCell = cell;
+    //TODO
 }
 
 bool Piece::canBeMoved() const
