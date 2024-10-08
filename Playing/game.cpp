@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <QLibrary>
+#include <QSoundEffect>
 
 #include "plugpiece.h"
 
@@ -33,7 +34,11 @@ Game::Game(bool aiMode,QObject* parent)
 
     round =1;
     // future = QtConcurrent::run([this]() { this->start(); });
-
+    soundEffect = new QSoundEffect(this);
+    soundEffect->setSource(QUrl(":/playing/Resources/place_piece.wav"));
+    soundEffect->setLoopCount(1);
+    soundEffect->setVolume(0.5f);
+    soundEffect->play();
 }
 
 Game* Game::instance = nullptr;
@@ -100,6 +105,7 @@ void Game::playTurn()//在选择完地址后调用
 
     //回合结束的操作
     board->movePiece(choosedPiece,choosedCell);
+    soundEffect->play();
     Playing::instance->addWidgetToBoardWidget(choosedCell->getPosition(),choosedPiece->getPieceWidget(),choosedCell->getPiecesNum()-1);
     Playing::instance->hidePleasePlacePiece_label();
 

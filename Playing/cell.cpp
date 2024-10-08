@@ -56,3 +56,13 @@ void Cell::setAdjacentCell(int i, Cell *cell)
 {
     adjacentCells[i] = cell;
 }
+
+bool Cell::checkPieceBelongingHere(int tarBelong)
+{
+    for(auto i : piecesHere)
+    {
+        if(i->belongingPlayer == tarBelong)
+            return true;
+    }
+    return false;
+}

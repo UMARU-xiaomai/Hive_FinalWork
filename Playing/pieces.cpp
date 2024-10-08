@@ -181,6 +181,7 @@ QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
     QVector<QPair<int,Cell*>> curCells;//通过pair来存储下一个点不要遍历的位置
     curCells.push_back(QPair<int,Cell*>(-1,currentCell));
     QVector<QPair<int,Cell*>> nextCells;
+    QSet<Cell*> dp;
     while(curCells.size())
     {
         nextCells.clear();
@@ -202,8 +203,9 @@ QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
                 if(next == this)
                     next = nullptr;
 
-                if((!last&&next)||(last&&!next))
+                if(((!last&&next)||(last&&!next))&&!dp.contains(cur))
                 {
+                    dp.insert(cur);
                     nextCells.push_back(QPair<int,Cell*>(i>2?i-3:i+3,cur));
                     res->push_back(cur);
                 }
@@ -213,7 +215,9 @@ QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
     }
     for(auto i:nextCells)
     {
+
         res->push_back(i.second);
+
     }
     return res;
 }

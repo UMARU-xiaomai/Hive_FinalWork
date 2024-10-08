@@ -23,6 +23,7 @@ public:
     Position* getPosition();
     Cell* getAdjacentCell(int i,bool dontCreNewCell = false);
     void setAdjacentCell(int i,Cell* cell);
+    bool checkPieceBelongingHere(int tarBelong);
 
 private:
     Position position;///<当前位置

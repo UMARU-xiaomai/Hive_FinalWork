@@ -1,7 +1,6 @@
 #include "board.h"
-#include "..\Scenes\playing.h"
-#include "testwidget.h"
 #include "cell.h"
+#include "game.h"
 
 Board::Board(Game * mainGame,QObject* parent)
     :QObject(parent)
@@ -15,18 +14,18 @@ Board::Board(Game * mainGame,QObject* parent)
 }
 
 Board* Board::instance = nullptr;
+////
+/// \brief Board::getPositionCell
+/// 对于指定的位置Position给出棋位Cell
+/// \param position
+/// 目标位置
+/// \param dontCreNewCell
+/// 为false时，若找不到目标位置，将不会在棋盘中创建新的Cell，返回nullptr
+/// \return 返回找到的Cell的指针
+///
 Cell *Board::getPositionCell(const Position *position,bool dontCreNewCell)
 {
-
-    int x = position->getX();
-    int y = position->getY();
-    if(!cells[x][y]&&!dontCreNewCell)
-    {
-        qDebug()<<"tes"<<x<<y;
-        cells[x][y] = new Cell(x,y);
-        // qDebug() <<x;
-    }
-    return cells[x][y];
+//TODO
 }
 
 QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
@@ -67,9 +66,9 @@ QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
                         if(cur&&cur->getPiece())
                         {
                             qDebug()<<"cmp:"<<cur->getPiece()->belongingPlayer <<piece->belongingPlayer<<cur->getPosition()->getX()<<cur->getPosition()->getY();
-                            if(cur->getPiece()->belongingPlayer == piece->belongingPlayer)
+                            if(cur->checkPieceBelongingHere(piece->belongingPlayer))
                                 ava = true;
-                            if(cur->getPiece()->belongingPlayer != piece->belongingPlayer)
+                            if(cur->checkPieceBelongingHere(piece->belongingPlayer?0:1))// 检查对手棋子是否在这
                             {
                                 ava = false;
                                 break;
@@ -87,22 +86,13 @@ QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
         return res;
     }
 }
-
+///
+/// \brief Board::movePiece 移动piece到目标cell
+/// \param piece 要移动的piece
+/// \param cell 目标cell
+///
 void Board::movePiece(Piece *piece, Cell *cell)
 {
-    if(piece->getCell())
-        piece->getCell()->getPiece(true);
-    cell->setPiece(piece);
-    for(int i = 0;i<6;i++)
-    {
-        // Position* tarPosition = cell->getPosition()->getAdjacentPosition(i);
-        // if(!getPositionCell(tarPosition))
-        // {
-        //     Cell* curCell = new Cell(tarPosition->getX(),tarPosition->getY(),this);
-        //     cells[tarPosition->getX()][tarPosition->getY()] = curCell;
-        // }
-        Cell* curCell = cell->getAdjacentCell(i);
-        qDebug() <<"around cell position"<< curCell ->getPosition()->getX()<<curCell ->getPosition()->getY();
-
-    }
+    //TODO
+    //提示:cell.setPiece()
 }

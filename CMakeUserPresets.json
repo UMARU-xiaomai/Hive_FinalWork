@@ -1,0 +1,58 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "Qt-Debug",
+      "inherits": "Qt-Default",
+      "binaryDir": "${sourceDir}/out/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "-DQT_QML_DEBUG"
+      },
+      "environment": {
+        "QML_DEBUG_ARGS": "-qmljsdebugger=file:{67e6d3fe-a342-469a-97be-0e7a11141dcd},block"
+      }
+    },
+    {
+      "name": "Qt-Release",
+      "inherits": "Qt-Default",
+      "binaryDir": "${sourceDir}/out/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "hidden": true,
+      "name": "Qt-Default",
+      "inherits": "QtDesignStudio_qt6_design_studio_reduced_version",
+      "vendor": {
+        "qt-project.org/Default": {
+          "checksum": "XamdSXPPHzWG2gtwHgIvrXzeFuA="
+        }
+      }
+    },
+    {
+      "hidden": true,
+      "name": "QtDesignStudio_qt6_design_studio_reduced_version",
+      "inherits": "Qt",
+      "environment": {
+        "QTDIR": "D:/Qt/Tools/QtDesignStudio/qt6_design_studio_reduced_version"
+      },
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "generator": "Ninja",
+      "vendor": {
+        "qt-project.org/Version": {
+          "checksum": "gGF8cJ1slfumiWuHnFLkSl6qtYw="
+        }
+      }
+    }
+  ],
+  "vendor": {
+    "qt-project.org/Presets": {
+      "checksum": "EXzTuY1X0whN1LIUmXyfywLuvRs="
+    }
+  }
+}

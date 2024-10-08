@@ -44,6 +44,8 @@ void Piece::setCell(Cell *cell)
 bool Piece::canBeMoved() const
 {
     QVector<Cell*> segs;
+    if(getCell()->getPiecesNum()>=2)
+        return true;
     for(int i=0;i<6;i++)
     {
         Cell* cur = getCell()->getAdjacentCell(i);
@@ -57,9 +59,9 @@ bool Piece::canBeMoved() const
         return true;
     }else
     {
-        QMap<Cell*,int> grope;
+        //回路检测算法
 
-        return false;//TODO：还没写完！！处理回路情况
+        return false;
     }
 
 }

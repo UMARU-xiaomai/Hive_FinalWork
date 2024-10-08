@@ -7,6 +7,7 @@
 #include "board.h"
 #include "player.h"
 #include <QFuture>
+#include <QSoundEffect>
 
 class Game :public QObject{
         Q_OBJECT
@@ -33,6 +34,7 @@ private:
     Piece* choosedPiece = nullptr;
     QVector<QWidget*> displayedAvailableCellWidget;
     Cell* choosedCell = nullptr;
+    QSoundEffect *soundEffect;
 
     QFuture<void> future;
     void switchPlayer();

@@ -8,6 +8,7 @@
         <file>Resources/piece_background_selected.png</file>
         <file>Resources/available_cell.png</file>
         <file>Resources/piece_background_unselected_2.png</file>
+        <file>Resources/place_piece.wav</file>
     </qresource>
     <qresource prefix="/playing/piece">
         <file>Resources/queen_bee.png</file>
