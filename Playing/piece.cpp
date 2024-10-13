@@ -3,7 +3,7 @@
 #include "cell.h"
 
 Piece::Piece(int belongingPlayer,QObject *parent)
-    : QObject{parent}
+    : QObject{parent},belonginfPlayer(belongingPlayer)
 {
     //TODO
 }
@@ -18,7 +18,7 @@ void Piece::initWidget()
 ///
 bool Piece::isPlaced()
 {
-    //TODO
+    return currentCell !=nullptr;
 }
 
 PieceWidget *Piece::getPieceWidget()
@@ -31,7 +31,7 @@ PieceWidget *Piece::getPieceWidget()
 ///
 Cell *Piece::getCell() const
 {
-    //TODO
+   return currentCell;
 }
 
 // bool Piece::isQB = false;
@@ -42,7 +42,7 @@ Cell *Piece::getCell() const
 ///
 void Piece::setCell(Cell *cell)
 {
-    //TODO
+    currentCell = cell;
 }
 
 bool Piece::canBeMoved() const

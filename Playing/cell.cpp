@@ -3,7 +3,7 @@
 
 
 Cell::Cell(int x,int y, QObject *parent)
-    : QObject{parent}
+    : QObject{parent},position(x,y)
 {
     //TODO
 }
@@ -13,8 +13,10 @@ Cell::Cell(int x,int y, QObject *parent)
 ///
 void Cell::setPiece(Piece *piece)
 {
-    //TODO
-    //提示：Cell用栈存储piece，反之piece只有一个cell
+    if (piece) {
+        piecesHere.push(piece); // 添加到栈顶
+        piece->setPosition(&position); // 更新Piece的当前位置
+    }
 }
 ///
 /// \brief Cell::getPiece 获取第一个棋子
@@ -23,8 +25,16 @@ void Cell::setPiece(Piece *piece)
 ///
 Piece *Cell::getPiece(bool pop)
 {
-    //TODO
-    //提示：Top/pop
+    /  if (piecesHere.isEmpty()) {
+        return nullptr;
+    }
+
+    // 如果 pop 为 true，则弹出栈顶棋子
+    Piece* topPiece = piecesHere.top();
+    if (pop) {
+        piecesHere.pop();  // 弹出栈顶棋子
+    }
+    return topPiece;
 }
 ///
 /// \brief Cell::getPiecesNum 获取棋子数目
@@ -32,7 +42,7 @@ Piece *Cell::getPiece(bool pop)
 ///
 int Cell::getPiecesNum()
 {
-    //TODO
+    return piecesHere.size();
 }
 
 ///
@@ -41,7 +51,7 @@ int Cell::getPiecesNum()
 ///
 Position *Cell::getPosition()
 {
-    //TODO
+    return &position;
 }
 
 Cell *Cell::getAdjacentCell(int i,bool dontCreNewCell)
@@ -65,15 +75,14 @@ Cell *Cell::getAdjacentCell(int i,bool dontCreNewCell)
 ///
 void Cell::setAdjacentCell(int i, Cell *cell)
 {
-    //TODO
+    adjacentCells[i] = cell;
 }
 
 bool Cell::checkPieceBelongingHere(int tarBelong)
 {
     for(auto i : piecesHere)
     {
-        if(i->belongingPlayer == tarBelong)
-            return true;
+        if(i->belongingPlayer != tarBelong)
+            return false;
     }
-    return false;
 }
