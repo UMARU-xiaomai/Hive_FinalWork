@@ -2,6 +2,7 @@
 #include "..\Scenes\playing.h"
 #include "testwidget.h"
 #include "cell.h"
+#include <QDebug>
 
 Board::Board(Game * mainGame,QObject* parent)
     :QObject(parent)
@@ -15,11 +16,11 @@ Board::Board(Game * mainGame,QObject* parent)
 }
 
 Board* Board::instance = nullptr;
-Cell *Board::getPositionCell(const Position *position,bool dontCreNewCell)
+Cell *Board::getPositionCell(const Position position,bool dontCreNewCell)
 {
 
-    int x = position->getX();
-    int y = position->getY();
+    int x = position.getX();
+    int y = position.getY();
     if(!cells[x][y]&&!dontCreNewCell)
     {
         qDebug()<<"tes"<<x<<y;
@@ -29,22 +30,22 @@ Cell *Board::getPositionCell(const Position *position,bool dontCreNewCell)
     return cells[x][y];
 }
 
-QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
+QVector<Cell*> Board::getValidPlaces(const Piece *piece)
 {
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(Game::instance->getRound(true)==1)
     {
 
 
         Cell* curCell = new Cell(0,0);
         cells[0][0] = curCell;
-        res->append(curCell);
+        res.append(curCell);
         return res;
     }else if(Game::instance->getRound(true)==2)
     {
         for(int i =0;i<6;i++)
         {
-            res->append(cells[0][0]->getAdjacentCell(i));
+            res.append(cells[0][0]->getAdjacentCell(i));
         }
         return res;
     }else
@@ -78,7 +79,7 @@ QVector<Cell*>* Board::getValidPlaces(const Piece *piece)
                     }
                     qDebug()<<ava;
                     if(ava)
-                        res->append(cell);
+                        res.append(cell);
                 }
             }
         }
@@ -106,3 +107,56 @@ void Board::movePiece(Piece *piece, Cell *cell)
 
     }
 }
+
+Board::PieceIterator Board::begin()
+{
+    auto res = PieceIterator(cells.begin(),(*(cells.begin())).begin(),this);
+    if(!(*res))
+        res++;
+    return res;
+}
+
+
+Board::PieceIterator::PieceIterator(QMap<int,QMap<int,Cell*>>::Iterator x, QMap<int,Cell*>::Iterator y,Board* tar):x_it(x),y_it(y),tar(tar){}
+
+bool Board::PieceIterator::operator!=(const PieceIterator &b)
+{
+    return !(this->x_it==b.x_it&&this->y_it==b.y_it);
+}
+
+Board::PieceIterator Board::PieceIterator::operator++(int)
+{
+    Cell* res_c;
+    Piece* res_p;
+
+    do{
+        if(y_it==(*x_it).end())
+        {
+            ++x_it;
+            if(x_it==tar->cells.end())
+            {
+                isEnd = true;
+                return *this;
+            }
+            y_it=(*x_it).begin();
+            res_c = *y_it;
+        }
+
+        res_c = *y_it;
+
+        if(res_c)
+            res_p = res_c->getPiece();
+        else
+            res_p=nullptr;
+
+        ++y_it;
+    }while(!res_p);
+    return *this;
+}
+
+Piece *Board::PieceIterator::operator*()
+{
+    return (*y_it)?(*y_it)->getPiece():nullptr;
+}
+
+bool Board::PieceIterator::getIsEnd() {return isEnd;}

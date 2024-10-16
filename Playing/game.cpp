@@ -12,13 +12,14 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <QLibrary>
+#include <QSoundEffect>
 
 #include "plugpiece.h"
 
 typedef PlugPiece* (*CreatePluginFunc)();
 typedef void (*DestroyPluginFunc)(PlugPiece*);
 Game::Game(bool aiMode,QObject* parent)
-    :QObject(parent)
+    :QObject(parent),effect(this)
 {
     this->aiMode = aiMode;
 
@@ -33,7 +34,11 @@ Game::Game(bool aiMode,QObject* parent)
 
     round =1;
     // future = QtConcurrent::run([this]() { this->start(); });
-
+    qDebug()<<effect.status();
+    effect.setSource(QUrl("qrc:/playing/Resources/piece_placed.wav"));
+    qDebug()<<effect.status();
+    effect.setLoopCount(1);
+    effect.setVolume(0.25f);
 }
 
 Game* Game::instance = nullptr;
@@ -66,6 +71,9 @@ void Game::start()
             currentPlayer = 0;
         }else{
             currentPlayer = 1;
+            //AI先下
+            setChoosedPiece(static_cast<AIPlayer*>(players[1])->selectPiece());
+            static_cast<AIPlayer*>(players[1])->movePiece();
         }
     }else
     {
@@ -141,6 +149,13 @@ void Game::playTurn()//在选择完地址后调用
         MainWindow::instance->setStatusBarMessage(msg);
     }
     // future = QtConcurrent::run([this]() { this->playTurn(); });
+
+    //AI模式
+    if(aiMode&&currentPlayer==1)
+    {
+        setChoosedPiece(static_cast<AIPlayer*>(players[1])->selectPiece());
+        static_cast<AIPlayer*>(players[1])->movePiece();
+    }
 }
 bool Game::checkGameOver()
 {
@@ -176,6 +191,19 @@ int Game::getRound(bool isTurn)
         return (round+1)/2;
 }
 
+QVector<Cell *> Game::getAvaliablePositions(Piece* tar)
+{
+    if(!tar)
+        tar = choosedPiece;
+    QVector<Cell*> positions;
+    if(tar->isPlaced()&&queenBees[currentPlayer])
+        positions = tar->getValidMoves(board);
+    else if(!tar->isPlaced())
+        positions = board->getValidPlaces(tar);
+    //qDebug() <<piece->isPlaced()<< positionPtr->count();
+    return positions;
+}
+
 void Game::setChoosedPiece(Piece *piece)
 {
     if(choosedPiece)
@@ -186,23 +214,15 @@ void Game::setChoosedPiece(Piece *piece)
 
     if(piece&&piece->belongingPlayer==currentPlayer)
     {
-        QVector<Cell*>* positionPtr = nullptr;
-        if(piece->isPlaced()&&queenBees[currentPlayer])
-            positionPtr = piece->getValidMoves(board);
-        else if(!piece->isPlaced())
-            positionPtr = board->getValidPlaces(piece);
-        //qDebug() <<piece->isPlaced()<< positionPtr->count();
-
-        if(positionPtr)
-        {
-            for(Cell* i :*positionPtr)
+        QVector<Cell*> positions = getAvaliablePositions();
+            for(Cell* i :positions)
             {
                 QWidget* curAvaCellWidget = new AvailableCellWidget(i);
                 displayedAvailableCellWidget.append(curAvaCellWidget);
                 Playing::instance->addWidgetToBoardWidget(i->getPosition(),curAvaCellWidget,i->getPiecesNum());
             }
-            delete positionPtr;
-        }
+
+
     }else
     {
         for(QWidget* i:displayedAvailableCellWidget)
@@ -217,7 +237,10 @@ void Game::setChoosedPiece(Piece *piece)
 void Game::setChoosedCell(Cell *cell)
 {
     choosedCell = cell;
+    effect.play();
     playTurn();
+
+
 }
 
 void Game::loadAndUsePlugin(const QString& pluginPath) {

@@ -2,6 +2,8 @@
 #define STARTSCENE_H
 
 #include <QWidget>
+#include <QtMultimedia>
+#include <QAudioOutput>
 
 namespace Ui {
 class StartScene;
@@ -22,8 +24,12 @@ private slots:
 
     void on_exitGameBtn_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
+
 private:
     Ui::StartScene *ui;
+    QMediaPlayer theme_music;
+    QAudioOutput outpt;
 };
 
 #endif // STARTSCENE_H

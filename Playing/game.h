@@ -7,6 +7,7 @@
 #include "board.h"
 #include "player.h"
 #include <QFuture>
+#include <QSoundEffect>
 
 class Game :public QObject{
         Q_OBJECT
@@ -17,6 +18,7 @@ public:
     void start();
     bool checkGameOver();
     int getRound(bool isTurn);//false指一来一回，true指进行的操作数
+    QVector<Cell*> getAvaliablePositions(Piece* tar = nullptr);
 
     void setChoosedPiece(Piece* piece);//传入一个空指针来清空
     void setChoosedCell(Cell* cell);
@@ -38,6 +40,8 @@ private:
     void switchPlayer();
     void playTurn();
     void loadAndUsePlugin(const QString& pluginPath);
+
+    QSoundEffect effect;
 
 };
 

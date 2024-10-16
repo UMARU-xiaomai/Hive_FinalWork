@@ -9,7 +9,7 @@ class QueenBee : public Piece
 {
 public:
     QueenBee(int belongingPlayer,QObject* parent = nullptr);
-    QVector<Cell*>* getValidMoves( Board* board) const override;
+    QVector<Cell*> getValidMoves( Board* board) const override;
     bool isQueenBee() const override;
     QString typeStr() const override;
     int startQuantity() const override;
@@ -20,7 +20,7 @@ class Spider : public Piece
 {
 public:
     Spider(int belongingPlayer,QObject* parent = nullptr);
-    QVector<Cell*>* getValidMoves( Board* board) const override;
+    QVector<Cell*> getValidMoves( Board* board) const override;
     bool isQueenBee() const override;
     QString typeStr() const override;
     int startQuantity() const override;
@@ -31,7 +31,7 @@ class Beetle : public Piece
 {
 public:
     Beetle(int belongingPlayer,QObject* parent = nullptr);
-    QVector<Cell*>* getValidMoves( Board* board) const override;
+    QVector<Cell*> getValidMoves( Board* board) const override;
     bool isQueenBee() const override;
     QString typeStr() const override;
     int startQuantity() const override;
@@ -42,7 +42,7 @@ class Grasshopper : public Piece
 {
 public:
     Grasshopper(int belongingPlayer,QObject* parent = nullptr);
-    QVector<Cell*>* getValidMoves( Board* board) const override;
+    QVector<Cell*> getValidMoves( Board* board) const override;
     bool isQueenBee() const override;
     QString typeStr() const override;
     int startQuantity() const override;
@@ -53,7 +53,7 @@ class SoldierAnt : public Piece
 {
 public:
     SoldierAnt(int belongingPlayer,QObject* parent = nullptr);
-    QVector<Cell*> *getValidMoves( Board* board) const override;
+    QVector<Cell*> getValidMoves( Board* board) const override;
     bool isQueenBee() const override;
     QString typeStr() const override;
     int startQuantity() const override;

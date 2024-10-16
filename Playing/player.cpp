@@ -26,20 +26,20 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
     this->numberOfPlayer = numOfPlayer;
 }
 
-Piece *Player::selectPiece(Board *board)
-{
-    return nullptr;
-}
+// Piece *Player::selectPiece(Board *board)
+// {
+//     return nullptr;
+// }
 
-void Player::placePiece(Piece *piece, Board *board, const Position *position)
-{
-    board->getPositionCell(position)->setPiece(piece);
-}
+// void Player::placePiece(Piece *piece, Board *board, const Position *position)
+// {
+//     board->getPositionCell(position)->setPiece(piece);
+// }
 
-void Player::movePiece(Piece *piece, Board *board, const Position *newPosition)
-{
-    board->getPositionCell(newPosition)->setPiece(piece);
-}
+// void Player::movePiece(Piece *piece, Board *board, const Position *newPosition)
+// {
+//     board->getPositionCell(newPosition)->setPiece(piece);
+// }
 //这三个函数仅会被Ai所调用
 void Player::addPlugPiece(Piece *piece)
 {

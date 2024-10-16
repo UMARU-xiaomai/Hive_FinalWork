@@ -7,11 +7,13 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+
 {
     MainWindow::instance = this;
     ui->setupUi(this);
     //设置标题
     this->setWindowTitle("Hive - by group 8");
+
 
 }
 

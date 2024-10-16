@@ -8,16 +8,16 @@ Position::Position(int x, int y,QObject* parent)
 
 }
 
-Position* Position::getAdjacentPosition(int i) const
+Position Position::getAdjacentPosition(int i) const
 {
     int offsetOdd[] = {-1,0,1,0,-1,-1};
     int offsetPlural[] = {0,1,1,1,0,-1};
     int offsetY[] = {-1,-1,0,1,1,0};
 
     if(abs(y)%2 == 1)
-        return new Position(x+offsetOdd[i],y+offsetY[i]);
+        return Position(x+offsetOdd[i],y+offsetY[i]);
     else
-        return new Position(x+offsetPlural[i],y+offsetY[i]);
+        return Position(x+offsetPlural[i],y+offsetY[i]);
 }
 
 int Position::getX() const
@@ -30,12 +30,14 @@ int Position::getY() const
     return y;
 }
 
-int Position::setX(int x)
+void Position::setX(int x)
 {
     this->x = x;
 }
 
-int Position::setY(int y)
+void Position::setY(int y)
 {
     this->y = y;
 }
+
+Position::Position(const Position &ori):x(ori.getX()),y(ori.getY()){}

@@ -8,8 +8,12 @@
         <file>Resources/piece_background_selected.png</file>
         <file>Resources/available_cell.png</file>
         <file>Resources/piece_background_unselected_2.png</file>
+        <file>Resources/piece_placed.wav</file>
     </qresource>
     <qresource prefix="/playing/piece">
         <file>Resources/queen_bee.png</file>
+    </qresource>
+    <qresource prefix="/music">
+        <file>Resources/legend_of_hive.mp3</file>
     </qresource>
 </RCC>

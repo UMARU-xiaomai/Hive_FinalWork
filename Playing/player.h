@@ -5,24 +5,24 @@
 #include <QWidget>
 #include <QVector>
 #include "piece.h"
-#include "board.h"
+// #include "board.h"
 
 class Player:public QObject{
     Q_OBJECT
 public:
     Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent = nullptr);
-    /*
-     * @brief 选择要操作的棋子
-     */
-    virtual Piece* selectPiece(Board* board);
-    /*
-     * @brief 放置选择的新棋子
-     */
-    virtual void placePiece(Piece* piece ,Board* board, const Position *position);
-    /*
-     * @brief 移动选择的棋子
-     */
-    virtual void movePiece(Piece* piece, Board* board, const Position *newPosition);
+    // /*
+    //  * @brief 选择要操作的棋子
+    //  */
+    // virtual Piece* selectPiece(Board* board);
+    // /*
+    //  * @brief 放置选择的新棋子
+    //  */
+    // virtual void placePiece(Piece* piece ,Board* board, const Position *position);
+    // /*
+    //  * @brief 移动选择的棋子
+    //  */
+    // virtual void movePiece(Piece* piece, Board* board, const Position *newPosition);
     QString name;///<Player1/Player2/AI
     void addPlugPiece(Piece* piece);
 protected:

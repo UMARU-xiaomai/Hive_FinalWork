@@ -12,9 +12,9 @@ QString QueenBee::typeStr() const {return "QueenBee";}
 int QueenBee::startQuantity() const {return 1;}
 QString QueenBee::getImgPath() const {return ":/playing/piece/Resources/queen_bee.png";}
 
-QVector<Cell*>* QueenBee::getValidMoves( Board *board) const
+QVector<Cell*> QueenBee::getValidMoves( Board *board) const
 {
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
@@ -32,7 +32,7 @@ QVector<Cell*>* QueenBee::getValidMoves( Board *board) const
         Piece* next = currentCell->getAdjacentCell(i==5?0:i+1)->getPiece();
 
         if((!last&&next)||(last&&!next))
-            res->push_back(cur);
+            res.push_back(cur);
     }
     return res;
 }
@@ -46,10 +46,10 @@ QString Spider::typeStr() const {return "Spider";}
 int Spider::startQuantity() const {return 2;}
 QString Spider::getImgPath() const {return "";}
 
-QVector<Cell*>* Spider::getValidMoves( Board *board) const
+QVector<Cell*> Spider::getValidMoves( Board *board) const
 {
 
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"Cannot move piece";
@@ -89,7 +89,7 @@ QVector<Cell*>* Spider::getValidMoves( Board *board) const
     }
     for(auto i:nextCells)
     {
-        res->push_back(i.second);
+        res.push_back(i.second);
     }
     return res;
 }
@@ -103,9 +103,9 @@ QString Beetle::typeStr() const {return "Beetle";}
 int Beetle::startQuantity() const {return 2;}
 QString Beetle::getImgPath() const {return "";}
 
-QVector<Cell*>* Beetle::getValidMoves( Board *board) const
+QVector<Cell*> Beetle::getValidMoves( Board *board) const
 {
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
@@ -123,7 +123,7 @@ QVector<Cell*>* Beetle::getValidMoves( Board *board) const
         Piece* next = currentCell->getAdjacentCell(i==5?0:i+1)->getPiece();
 
         if(last||next||cur->getPiece())
-            res->push_back(cur);
+            res.push_back(cur);
     }
     return res;
 }
@@ -137,9 +137,9 @@ QString Grasshopper::typeStr() const {return "Grasshopper";}
 int Grasshopper::startQuantity() const {return 3;}
 QString Grasshopper::getImgPath() const {return "";}
 
-QVector<Cell*>* Grasshopper::getValidMoves( Board *board) const
+QVector<Cell*> Grasshopper::getValidMoves( Board *board) const
 {
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
@@ -155,7 +155,7 @@ QVector<Cell*>* Grasshopper::getValidMoves( Board *board) const
         {
             cur = cur->getAdjacentCell(i);
         }
-        res->push_back(cur);
+        res.push_back(cur);
     }
     return res;
 }
@@ -169,9 +169,9 @@ QString SoldierAnt::typeStr() const {return "SoldierAnt";}
 int SoldierAnt::startQuantity() const {return 3;}
 QString SoldierAnt::getImgPath() const {return "";}
 
-QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
+QVector<Cell*> SoldierAnt::getValidMoves( Board *board) const
 {
-    QVector<Cell*>* res = new QVector<Cell*>();
+    QVector<Cell*> res;
     if(!currentCell||currentCell->getPiece()!=this||!canBeMoved())
     {
         qDebug() <<"piece not be placed";
@@ -205,7 +205,7 @@ QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
                 if((!last&&next)||(last&&!next))
                 {
                     nextCells.push_back(QPair<int,Cell*>(i>2?i-3:i+3,cur));
-                    res->push_back(cur);
+                    res.push_back(cur);
                 }
             }
         }
@@ -213,7 +213,7 @@ QVector<Cell*>* SoldierAnt::getValidMoves( Board *board) const
     }
     for(auto i:nextCells)
     {
-        res->push_back(i.second);
+        res.push_back(i.second);
     }
     return res;
 }

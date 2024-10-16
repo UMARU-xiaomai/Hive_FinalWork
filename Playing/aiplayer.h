@@ -11,15 +11,11 @@ public:
     /*
      * @brief 随机选择一个棋子
      */
-    Piece* selectPiece(Board* board) override;
+    Piece* selectPiece() ;
     /*
      * @brief 随机放置到一个位置
      */
-    void placePiece(Piece* piece ,Board* board, const Position *position) override;
-    /*
-     * @brief 随机放置到一个位置
-     */
-    void movePiece(Piece* piece, Board* board, const Position *newPosition) override;
+    void movePiece() ;
 };
 
 #endif // AIPLAYER_H

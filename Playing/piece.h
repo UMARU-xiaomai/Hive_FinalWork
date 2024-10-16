@@ -19,7 +19,7 @@ public:
 
     Piece(int belongingPlayer,QObject *parent = nullptr);
     bool isPlaced();///<是否已经被放到棋盘上
-    virtual QVector<Cell*>* getValidMoves(Board* board) const = 0;// 获取可移动位置虚函数，无需实现
+    virtual QVector<Cell*> getValidMoves(Board* board) const = 0;// 获取可移动位置虚函数，无需实现
     PieceWidget* getPieceWidget();
     Cell* getCell() const;
 

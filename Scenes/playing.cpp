@@ -3,6 +3,7 @@
 #include "..\scenemanager.h"
 #include <QMessageBox>
 #include <QDebug>
+#include "..\mainwindow.h"
 
 
 
@@ -120,6 +121,7 @@ void Playing::hidePleasePlacePiece_label()
 }
 Playing::~Playing()
 {
+    MainWindow::instance->setStatusBarMessage("");
     delete ui;
 }
 

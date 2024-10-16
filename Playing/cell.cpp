@@ -42,12 +42,11 @@ Cell *Cell::getAdjacentCell(int i,bool dontCreNewCell)
     Cell* resCell = adjacentCells[i];
     if(!resCell)
     {
-        Position* curPosition = this->getPosition()->getAdjacentPosition(i);
+        Position curPosition = this->getPosition()->getAdjacentPosition(i);
         resCell = Board::instance->getPositionCell(curPosition,dontCreNewCell);
 
         this->setAdjacentCell(i,resCell);
 
-        delete curPosition;
     }
     return resCell;
 }
