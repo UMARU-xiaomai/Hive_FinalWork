@@ -20,10 +20,13 @@ PieceWidget::PieceWidget(Piece* srcPiece,QWidget *parent)
     qsl->addWidget( ui->label);
     qsl->addWidget( ui->pieceToggle);
     this->setLayout(qsl);
-    ui->label->setText(srcPiece->typeStr());
-    //ui->label->setPixmap(QPixmap(srcPiece->getImgPath()).scaled(512,512));
+
+    //ui->label->setText(srcPiece->typeStr());
+    ui->label->setPixmap(QPixmap(srcPiece->getImgPath()).scaled(512,512));
+
     ui->label->setAttribute(Qt::WA_TransparentForMouseEvents,true);
     ui->testlabel->setAttribute(Qt::WA_TransparentForMouseEvents,true);
+    ui->pieceToggle->setToolTip(srcPiece->typeStr());
     // qDebug() <<;
 }
 
@@ -80,6 +83,11 @@ void PieceWidget::setPieceBelonging(int belongingNum)
         icon.addPixmap(QPixmap(":/playing/Resources/piece_background_unselected_2.png"),QIcon::Normal,QIcon::Off);
     }
     ui->pieceToggle->setIcon(icon);
+}
+
+void PieceWidget::setPieceToolTip(QString tip)
+{
+    ui->pieceToggle->setToolTip(tip);
 }
 
 void PieceWidget::on_pieceToggle_toggled(bool checked)

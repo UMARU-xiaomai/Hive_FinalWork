@@ -39,12 +39,12 @@ QVector<Cell*> QueenBee::getValidMoves( Board *board) const
 
 // Spider
 Spider::Spider(int belongingPlayer, QObject *parent)
-    : Piece{belongingPlayer, parent}  // 枚举转字符串
+    : Piece{belongingPlayer, parent}// 枚举转字符串
 {}
 bool Spider::isQueenBee() const {return false;}
 QString Spider::typeStr() const {return "Spider";}
 int Spider::startQuantity() const {return 2;}
-QString Spider::getImgPath() const {return "";}
+QString Spider::getImgPath() const {return ":/playing/piece/Resources/spider.png";}
 
 QVector<Cell*> Spider::getValidMoves( Board *board) const
 {
@@ -96,12 +96,12 @@ QVector<Cell*> Spider::getValidMoves( Board *board) const
 
 // Beetle
 Beetle::Beetle(int belongingPlayer, QObject *parent)
-    : Piece{belongingPlayer, parent}  // 枚举转字符串
+    : Piece{belongingPlayer, parent} // 枚举转字符串
 {}
 bool Beetle::isQueenBee() const {return false;}
 QString Beetle::typeStr() const {return "Beetle";}
 int Beetle::startQuantity() const {return 2;}
-QString Beetle::getImgPath() const {return "";}
+QString Beetle::getImgPath() const {return ":/playing/piece/Resources/beetles.png";}
 
 QVector<Cell*> Beetle::getValidMoves( Board *board) const
 {
@@ -122,7 +122,7 @@ QVector<Cell*> Beetle::getValidMoves( Board *board) const
         Piece* last = currentCell->getAdjacentCell(i==0?5:i-1)->getPiece();
         Piece* next = currentCell->getAdjacentCell(i==5?0:i+1)->getPiece();
 
-        if(last||next||cur->getPiece())
+        if(currentCell->getPiecesNum()>1||last||next||cur->getPiece())
             res.push_back(cur);
     }
     return res;
@@ -130,12 +130,12 @@ QVector<Cell*> Beetle::getValidMoves( Board *board) const
 
 // Grasshopper
 Grasshopper::Grasshopper(int belongingPlayer, QObject *parent)
-    : Piece{belongingPlayer, parent}  // 枚举转字符串
+    : Piece{belongingPlayer, parent} // 枚举转字符串
 {}
 bool Grasshopper::isQueenBee() const {return false;}
 QString Grasshopper::typeStr() const {return "Grasshopper";}
 int Grasshopper::startQuantity() const {return 3;}
-QString Grasshopper::getImgPath() const {return "";}
+QString Grasshopper::getImgPath() const {return ":/playing/piece/Resources/grasshopper.png";}
 
 QVector<Cell*> Grasshopper::getValidMoves( Board *board) const
 {
@@ -162,12 +162,12 @@ QVector<Cell*> Grasshopper::getValidMoves( Board *board) const
 
 // SoldierAnt
 SoldierAnt::SoldierAnt(int belongingPlayer, QObject *parent)
-    : Piece{belongingPlayer, parent}  // 枚举转字符串
+    : Piece{belongingPlayer, parent} // 枚举转字符串
 {}
 bool SoldierAnt::isQueenBee() const {return false;}
 QString SoldierAnt::typeStr() const {return "SoldierAnt";}
 int SoldierAnt::startQuantity() const {return 3;}
-QString SoldierAnt::getImgPath() const {return "";}
+QString SoldierAnt::getImgPath() const {return ":/playing/piece/Resources/soldier_ant.png";}
 
 QVector<Cell*> SoldierAnt::getValidMoves( Board *board) const
 {
@@ -204,7 +204,10 @@ QVector<Cell*> SoldierAnt::getValidMoves( Board *board) const
 
                 if((!last&&next)||(last&&!next))
                 {
+
                     nextCells.push_back(QPair<int,Cell*>(i>2?i-3:i+3,cur));
+
+                    if(std::find(res.begin(),res.end(),cur)==res.end())
                     res.push_back(cur);
                 }
             }

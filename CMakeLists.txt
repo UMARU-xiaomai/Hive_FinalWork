@@ -31,7 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Scenes/startscene.h Scenes/startscene.cpp Scenes/startscene.ui
         Scenes/playing.h Scenes/playing.cpp Scenes/playing.ui
-        Resources.qrc
+
         Playing/game.h Playing/game.cpp
         Playing/player.h Playing/player.cpp
         Playing/aiplayer.h Playing/aiplayer.cpp
@@ -47,8 +47,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Playing/availablecellwidget.h Playing/availablecellwidget.cpp Playing/availablecellwidget.ui
         Scenes/extensions/hexagonlayout.cpp Scenes/extensions/hexagonlayout.h
         Scenes/extensions/centeredscrollarea.cpp Scenes/extensions/centeredscrollarea.h
-        Playing/plugpiece.h Playing/plugpiece.cpp
+        Playing/pieceinterface.h
         Playing/testwidget.h Playing/testwidget.cpp Playing/testwidget.ui
+        Playing/pieces_add.h Playing/pieces_add.cpp
 
 
 

@@ -2,6 +2,8 @@
 #include "cell.h"
 #include "pieces.h"
 #include "../Scenes/playing.h"
+#include "../mainwindow.h"
+#include "pieces_add.h"
 
 
 Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
@@ -17,8 +19,17 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
         pieces.append(new Pieces::Grasshopper(numOfPlayer));
     for(int i = 0;i<3;i++)
         pieces.append(new Pieces::SoldierAnt(numOfPlayer));
-    for(Piece* i :pieces)
+
+    if(MainWindow::instance->settings.addMosquito)
+        pieces.append(new PiecesAdd::Mosquito(numOfPlayer));
+    if(MainWindow::instance->settings.addLadybug)
+        pieces.append(new PiecesAdd::Ladybug(numOfPlayer));
+    if(MainWindow::instance->settings.addPillbug)
+        pieces.append(new PiecesAdd::Pillbug(numOfPlayer));
+
+    for(PieceInterface* cur :pieces)
     {
+        Piece* i = static_cast<Piece*>(cur);
         i->initWidget();
         Playing::instance->addPieceWidgetToPlayerColumn(numOfPlayer,i->getPieceWidget());
     }
@@ -41,10 +52,10 @@ Player::Player(const QString &name, bool isAI,int numOfPlayer,QObject* parent)
 //     board->getPositionCell(newPosition)->setPiece(piece);
 // }
 //这三个函数仅会被Ai所调用
-void Player::addPlugPiece(Piece *piece)
+void Player::addPlugPiece(PieceInterface *piece)
 {
     pieces.append(piece);
-    Playing::instance->addPieceWidgetToPlayerColumn(numberOfPlayer,piece->getPieceWidget());
+    Playing::instance->addPieceWidgetToPlayerColumn(numberOfPlayer,static_cast<Piece*>(piece)->getPieceWidget());
 
 }
 

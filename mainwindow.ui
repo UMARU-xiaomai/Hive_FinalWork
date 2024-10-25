@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resources.qrc">
+   <iconset>
     <normaloff>:/ui/Resources/hive_logo_icon.png</normaloff>:/ui/Resources/hive_logo_icon.png</iconset>
   </property>
   <property name="iconSize">
@@ -63,7 +63,21 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>设置</string>
+    </property>
+    <addaction name="actionaddtion"/>
+    <addaction name="actionMosquito"/>
+    <addaction name="actionLadybug"/>
+    <addaction name="actionPillbug"/>
+    <addaction name="separator"/>
+    <addaction name="actionSE"/>
+    <addaction name="actionBackgroundMusic"/>
+    <addaction name="actionPlacePiece_SE"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_3"/>
    <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -92,9 +106,87 @@
     <enum>QAction::MenuRole::AboutRole</enum>
    </property>
   </action>
+  <action name="actionaddtion">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>附加内容</string>
+   </property>
+  </action>
+  <action name="actionMosquito">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>蚊子</string>
+   </property>
+  </action>
+  <action name="actionLadybug">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>瓢虫</string>
+   </property>
+  </action>
+  <action name="actionPillbug">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>药虫</string>
+   </property>
+  </action>
+  <action name="actionSE">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>音效</string>
+   </property>
+  </action>
+  <action name="actionBackgroundMusic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>背景音乐</string>
+   </property>
+  </action>
+  <action name="actionPlacePiece_SE">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>放棋子音效</string>
+   </property>
+  </action>
  </widget>
- <resources>
-  <include location="Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

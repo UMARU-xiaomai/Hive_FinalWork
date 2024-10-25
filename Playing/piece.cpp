@@ -43,6 +43,8 @@ void Piece::setCell(Cell *cell)
 
 bool Piece::canBeMoved() const
 {
+    if(this->currentCell->getPiecesNum()>1)
+        return true;
     QVector<Cell*> segs;
     for(int i=0;i<6;i++)
     {
@@ -57,9 +59,32 @@ bool Piece::canBeMoved() const
         return true;
     }else
     {
-        QMap<Cell*,int> grope;
+        QSet<Cell*> passedCells;
+        for(auto curStartCell : segs)
+        {
+            passedCells.insert(curStartCell);
+            return DFS(curStartCell,passedCells,segs);
+        }
 
         return false;//TODO：还没写完！！处理回路情况
     }
 
+}
+
+bool Piece::DFS(Cell *curCell, QSet<Cell *> &passed,const QVector<Cell*> &segs) const
+{
+    passed.insert(curCell);
+    for(int i=0;i<6;i++)
+    {
+        Cell* tmp = curCell->getAdjacentCell(i);
+        if(tmp&&tmp->getPiece()&&tmp->getPiece()!=this)
+        {
+            if(!passed.contains(tmp)&&segs.contains(tmp))
+                return true;
+            if(!passed.contains(tmp))
+                return DFS(tmp,passed,segs);
+        }
+
+    }
+    return false;
 }

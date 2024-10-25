@@ -14,7 +14,9 @@ class StartScene : public QWidget
     Q_OBJECT
 
 public:
+    static StartScene* instance;
     explicit StartScene(QWidget *parent = nullptr);
+    void SetBackgroundMusic(bool val);
     ~StartScene();
 
 private slots:

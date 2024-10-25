@@ -12,12 +12,12 @@ public:
     explicit SceneManager(QWidget *parent = nullptr);
     //切换场景
     void switchToScene(const int num) ;
-
+    QWidget *currentScene = nullptr;
 private:
     //添加场景，让每个场景（QWiget）在创建时添加到场景管理器
     QWidget* addSceneToMainQWidget(QWidget *scene);
     // QMap<int, QWidget*> scenes;
-    QWidget *currentScene = nullptr;
+
 
 signals:
 };

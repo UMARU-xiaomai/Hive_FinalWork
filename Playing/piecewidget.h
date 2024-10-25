@@ -18,6 +18,7 @@ public:
     ~PieceWidget();
     void cancelChecked();
     void setPieceBelonging(int belongingNum);
+    void setPieceToolTip(QString tip);
 protected:
     void resizeEvent(QResizeEvent* event) override;
 private slots:

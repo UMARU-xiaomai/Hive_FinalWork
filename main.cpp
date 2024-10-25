@@ -4,10 +4,13 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QResource>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QResource::registerResource("./Resources.rcc");
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

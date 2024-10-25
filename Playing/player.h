@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QVector>
 #include "piece.h"
+#include "pieceinterface.h"
 // #include "board.h"
 
 class Player:public QObject{
@@ -24,12 +25,12 @@ public:
     //  */
     // virtual void movePiece(Piece* piece, Board* board, const Position *newPosition);
     QString name;///<Player1/Player2/AI
-    void addPlugPiece(Piece* piece);
+    void addPlugPiece(PieceInterface* piece);
 protected:
 
     int numberOfPlayer;///<0:玩家1；1：玩家2
     bool isAI;///<是否为AI
-    QVector<Piece*> pieces;///<持有的，还没有下到棋盘上的棋子
+    QVector<PieceInterface*> pieces;///<持有的，还没有下到棋盘上的棋子
     bool queenBeePlaced;
 
 };

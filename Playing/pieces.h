@@ -2,6 +2,7 @@
 #define PIECES_H
 
 #include "piece.h"
+#include "pieceinterface.h"
 
 namespace Pieces {
 

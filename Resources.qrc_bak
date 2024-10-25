@@ -11,7 +11,11 @@
         <file>Resources/piece_placed.wav</file>
     </qresource>
     <qresource prefix="/playing/piece">
+        <file>Resources/beetles.png</file>
+        <file>Resources/grasshopper.png</file>
         <file>Resources/queen_bee.png</file>
+        <file>Resources/soldier_ant.png</file>
+        <file>Resources/spider.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>Resources/legend_of_hive.mp3</file>

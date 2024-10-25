@@ -14,10 +14,10 @@
 #include <QLibrary>
 #include <QSoundEffect>
 
-#include "plugpiece.h"
+#include "pieceinterface.h"
 
-typedef PlugPiece* (*CreatePluginFunc)();
-typedef void (*DestroyPluginFunc)(PlugPiece*);
+typedef PieceInterface* (*CreatePluginFunc)();
+typedef void (*DestroyPluginFunc)(PieceInterface*);
 Game::Game(bool aiMode,QObject* parent)
     :QObject(parent),effect(this)
 {
@@ -237,7 +237,8 @@ void Game::setChoosedPiece(Piece *piece)
 void Game::setChoosedCell(Cell *cell)
 {
     choosedCell = cell;
-    effect.play();
+    if(MainWindow::instance->settings.enableSoundEffect)
+        effect.play();
     playTurn();
 
 
@@ -252,13 +253,13 @@ void Game::loadAndUsePlugin(const QString& pluginPath) {
         DestroyPluginFunc destroyPlugin = (DestroyPluginFunc)pluginLib.resolve("destroyPlugin");
 
         if (createPlugin && destroyPlugin) {
-            PlugPiece* plugin = createPlugin();  // 创建插件实例
-            plugin->initialize();  // 初始化插件
+            PieceInterface* plugin = createPlugin();  // 创建插件实例
+
 
             players[0]->addPlugPiece(plugin);
             players[1]->addPlugPiece(plugin);
 
-            plugin->shutdown();  // 关闭插件
+
             destroyPlugin(plugin);  // 销毁插件实例
         } else {
             qDebug() << "Failed to resolve plugin functions";

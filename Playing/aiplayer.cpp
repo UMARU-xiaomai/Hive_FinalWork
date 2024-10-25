@@ -11,12 +11,17 @@ AIPlayer::AIPlayer(int numOfPlayer,QObject* parent)
 
 Piece *AIPlayer::selectPiece()
 {
+    if(Game::instance->getRound(false)==1)
+    {
+        return static_cast<Piece*>(pieces[0]);
+    }
     Piece* res;
+
     do{
         if(QRandomGenerator::global()->bounded(2))
         {
             int rand_index = QRandomGenerator::global()->bounded(pieces.size());
-            res = pieces[rand_index];
+            res = static_cast<Piece*>(pieces[rand_index]);
         }else
         {
             QVector<Piece*>  tmp;

@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QUrl>
+#include "Scenes/startscene.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,3 +37,30 @@ void MainWindow::on_actionAbout_triggered()
     QDesktopServices::openUrl(QUrl("https://github.com/UMARU-xiaomai/Hive_FinalWork"));
 }
 
+void MainWindow::on_actionMosquito_toggled(bool val)
+{
+    settings.addMosquito = val;
+}
+
+void MainWindow::on_actionLadybug_toggled(bool val)
+{
+    settings.addLadybug = val;
+}
+
+void MainWindow::on_actionPillbug_toggled(bool val)
+{
+    settings.addPillbug = val;
+}
+
+void MainWindow::on_actionPlacePiece_SE_toggled(bool val)
+{
+    settings.enableSoundEffect = val;
+    qDebug()<<"Hello!!!!";
+}
+
+void MainWindow::on_actionBackgroundMusic_toggled(bool val)
+{
+    settings.backGroundMusic = val;
+    if(StartScene::instance!=nullptr)
+    StartScene::instance->SetBackgroundMusic(val);
+}

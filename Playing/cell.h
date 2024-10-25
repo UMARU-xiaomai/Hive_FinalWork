@@ -28,6 +28,8 @@ private:
     Position position;///<当前位置
     QStack<Piece*> piecesHere; ///<由于甲虫的存在，使用栈存储棋子
     QMap<int,Cell*> adjacentCells;///<邻接的Cell
+
+    void setPieceTips();
 };
 
 #endif // CELL_H
